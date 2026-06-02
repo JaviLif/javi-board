@@ -261,12 +261,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .graph-canvas-wrap { flex: 1; position: relative; min-height: 0; }
 #windChart { width: 100% !important; height: 100% !important; }
 
-/* Wind color bands for map markers */
-.leaflet-wind-marker {
+/* Wind map markers */
+.wind-marker-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.wind-marker-circle {
   display: flex; align-items: center; justify-content: center;
   border-radius: 50%; border: 2.5px solid white;
   font-size: 11px; font-weight: 800; color: white;
-  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+.wind-marker-pin {
+  width: 2px; height: 8px; background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.wind-marker-name {
+  font-size: 10px; font-weight: 800; color: #172b4d;
+  white-space: nowrap; text-shadow: 0 1px 0 white, 0 -1px 0 white, 1px 0 0 white, -1px 0 0 white;
+  line-height: 1;
 }
 
 /* Loading overlay */
@@ -396,14 +408,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <div class="panel" id="panel-para">
     <div class="para-toolbar">
       <div class="para-toolbar-left">
-        <span class="para-label">Radius</span>
-        <select class="radius-select" id="radiusSelect" onchange="onRadiusChange()">
-          <option value="5">5 km</option>
-          <option value="10" selected>10 km</option>
-          <option value="20">20 km</option>
-          <option value="50">50 km</option>
-          <option value="100">100 km</option>
-        </select>
         <button class="btn-locate" id="locateBtn" onclick="locateAndFetch()">
           📍 Get my location
         </button>
@@ -411,6 +415,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
           <span class="dot" id="statusDot"></span>
           <span id="statusText">Press "Get my location" to start</span>
         </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;flex-shrink:0">
+        <a href="https://aviationweather.gov" target="_blank" rel="noopener" style="font-size:11px;color:var(--text-muted);text-decoration:none;white-space:nowrap">METAR ↗</a>
+        <a href="https://open-meteo.com" target="_blank" rel="noopener" style="font-size:11px;color:var(--text-muted);text-decoration:none;white-space:nowrap">Open-Meteo ↗</a>
       </div>
     </div>
     <div class="para-body" id="paraBody">
@@ -438,6 +446,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 </div><!-- /main -->
 </div><!-- /app -->
+
+<!-- Version badge -->
+<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v0.1</div>
 
 <!-- Mobile nav -->
 <nav class="bottom-nav">
@@ -534,6 +545,8 @@ function switchTab(tab){
     document.getElementById(`nav-${t}`)?.classList.toggle('active',t===tab);
     document.getElementById(`mob-${t}`)?.classList.toggle('active',t===tab);
   });
+  // settings button in footer should never appear active
+  document.querySelectorAll('.sidebar-footer .nav-item').forEach(el=>el.classList.remove('active'));
   if(tab==='news'){document.getElementById('newsBadge').style.display='none';if(!newsArticles.length)fetchNews(false);}
   if(tab==='para'){initParaMap();}
 }
@@ -624,23 +637,18 @@ function setNewsFilter(f){newsFilter=f;renderNews();}
 setInterval(()=>{if(activeTab==='news')fetchNews(false);},NEWS_TTL);
 
 /* ══════════════════════════════════
-   PARAGLIDING — WIND
+   PARAGLIDING — WIND (real METAR stations)
 ══════════════════════════════════ */
 
 function initParaMap(){
-  if(paraMap) return; // already initialised
+  if(paraMap) return;
   setTimeout(()=>{
     paraMap = L.map('paraMap',{zoomControl:true,attributionControl:true});
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
       attribution:'© OpenStreetMap contributors', maxZoom:18
     }).addTo(paraMap);
-    paraMap.setView([52.22,5.18],9); // default: Netherlands centre
+    paraMap.setView([52.22,5.18],8);
   },100);
-}
-
-function onRadiusChange(){
-  paraRadius=parseInt(document.getElementById('radiusSelect').value);
-  if(paraLat!==null) fetchWindData();
 }
 
 function locateAndFetch(){
@@ -650,15 +658,15 @@ function locateAndFetch(){
   navigator.geolocation.getCurrentPosition(
     pos=>{
       paraLat=pos.coords.latitude; paraLon=pos.coords.longitude;
-      btn.classList.remove('loading'); btn.textContent='📍 Refresh';
-      setParaStatus('green',`📍 ${paraLat.toFixed(4)}, ${paraLon.toFixed(4)}`);
+      btn.classList.remove('loading'); btn.textContent='↻ Refresh';
+      setParaStatus('green',`${paraLat.toFixed(3)}°N ${paraLon.toFixed(3)}°E`);
       fetchWindData();
     },
-    err=>{
+    ()=>{
       btn.classList.remove('loading'); btn.textContent='📍 Get my location';
-      setParaStatus('red','Location denied — enable GPS and try again');
+      setParaStatus('red','Location denied — enable GPS and retry');
     },
-    {enableHighAccuracy:true,timeout:10000}
+    {enableHighAccuracy:true,timeout:12000}
   );
 }
 
@@ -667,61 +675,70 @@ function setParaStatus(color,text){
   document.getElementById('statusText').textContent=text;
 }
 
-/* Generate station points around user: center + 8 compass directions */
-function stationPoints(lat,lon,radiusKm){
-  const R=6371, r=radiusKm;
-  const points=[{name:'Your Location',lat,lon,dist:0,isCenter:true}];
-  const dirs=[{n:'N',b:0},{n:'NE',b:45},{n:'E',b:90},{n:'SE',b:135},{n:'S',b:180},{n:'SW',b:225},{n:'W',b:270},{n:'NW',b:315}];
-  dirs.forEach(d=>{
-    const brRad=d.b*Math.PI/180;
-    const latRad=lat*Math.PI/180;
-    const newLat=Math.asin(Math.sin(latRad)*Math.cos(r/R)+Math.cos(latRad)*Math.sin(r/R)*Math.cos(brRad));
-    const newLon=(lon*Math.PI/180)+Math.atan2(Math.sin(brRad)*Math.sin(r/R)*Math.cos(latRad),Math.cos(r/R)-Math.sin(latRad)*Math.sin(newLat));
-    points.push({name:d.n,lat:newLat*180/Math.PI,lon:newLon*180/Math.PI,dist:r,isCenter:false});
-  });
-  return points;
+/* Haversine distance in km */
+function haversine(lat1,lon1,lat2,lon2){
+  const R=6371,dLat=(lat2-lat1)*Math.PI/180,dLon=(lon2-lon1)*Math.PI/180;
+  const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
 }
 
 async function fetchWindData(){
   showParaLoading(true);
-  setParaStatus('orange','Fetching wind data…');
-  const points=stationPoints(paraLat,paraLon,paraRadius);
-  const now=new Date();
-  const apiURL=p=>`https://api.open-meteo.com/v1/forecast?latitude=${p.lat.toFixed(4)}&longitude=${p.lon.toFixed(4)}&hourly=windspeed_10m,windgusts_10m,winddirection_10m&past_hours=12&forecast_hours=6&windspeed_unit=kmh&timezone=auto&models=best_match`;
+  setParaStatus('orange','Fetching METAR stations…');
+
+  // Bounding box ~200 km around user
+  const d=1.8;
+  const bbox=`${(paraLat-d).toFixed(2)},${(paraLon-d*1.5).toFixed(2)},${(paraLat+d).toFixed(2)},${(paraLon+d*1.5).toFixed(2)}`;
+  const metarURL=`https://aviationweather.gov/api/data/metar?bbox=${bbox}&format=json&hours=2`;
 
   try{
-    const results=await Promise.all(points.map(async p=>{
-      const res=await fetch(apiURL(p));
-      const data=await res.json();
-      const h=data.hourly;
-      // find current hour index
-      const nowISO=now.toISOString().slice(0,13);
-      let idx=h.time.findIndex(t=>t.startsWith(nowISO));
-      if(idx<0)idx=Math.max(0,h.time.length-7);
-      return{
-        ...p,
-        wind:Math.round(h.windspeed_10m[idx])||0,
-        gust:Math.round(h.windgusts_10m[idx])||0,
-        dir:Math.round(h.winddirection_10m[idx])||0,
-        hourly:{
-          times:h.time,
-          wind:h.windspeed_10m,
-          gust:h.windgusts_10m,
-          dir:h.winddirection_10m,
-          nowIdx:idx
-        }
-      };
-    }));
-    paraStations=results;
-    selectedStation=results[0]; // default: user location
+    const res=await fetch(metarURL);
+    const raw=await res.json();
+
+    // Filter: only stations with wind data, remove dupes by icaoId
+    const seen=new Set();
+    const stations=raw
+      .filter(s=>s.wdir!=null&&s.wspd!=null&&s.lat&&s.lon)
+      .filter(s=>{ if(seen.has(s.icaoId))return false; seen.add(s.icaoId);return true; })
+      .map(s=>({
+        name: s.name ? s.name.split('/')[0].trim() : s.icaoId,
+        icao: s.icaoId,
+        lat:  parseFloat(s.lat),
+        lon:  parseFloat(s.lon),
+        wind: Math.round((s.wspd||0)*1.852),      // knots → km/h
+        gust: s.wgst ? Math.round(s.wgst*1.852) : null,
+        dir:  s.wdir==='VRB' ? -1 : parseInt(s.wdir)||0,
+        raw:  s,
+      }))
+      .sort((a,b)=>haversine(paraLat,paraLon,a.lat,a.lon)-haversine(paraLat,paraLon,b.lat,b.lon));
+
+    if(!stations.length) throw new Error('No stations found');
+
+    paraStations=stations;
+    selectedStation=stations[0];
+
     renderParaMap();
     renderParaStations();
-    renderWindChart(selectedStation);
-    setParaStatus('green',`Live wind data · ${points.length} stations · updated just now`);
+    fetchAndRenderChart(selectedStation); // 12h graph from Open-Meteo for nearest station
+    setParaStatus('green',`${stations.length} METAR stations · updated just now`);
   } catch(e){
-    setParaStatus('red','Failed to fetch wind data. Check connection.');
+    setParaStatus('red','Failed: '+e.message);
   }
   showParaLoading(false);
+}
+
+/* Fetch 12h Open-Meteo history for a given lat/lon and render chart */
+async function fetchAndRenderChart(station){
+  try{
+    const url=`https://api.open-meteo.com/v1/forecast?latitude=${station.lat.toFixed(4)}&longitude=${station.lon.toFixed(4)}&hourly=windspeed_10m,windgusts_10m,winddirection_10m&past_hours=12&forecast_hours=6&windspeed_unit=kmh&timezone=auto`;
+    const data=await (await fetch(url)).json();
+    const h=data.hourly;
+    const nowISO=new Date().toISOString().slice(0,13);
+    let idx=h.time.findIndex(t=>t.startsWith(nowISO));
+    if(idx<0)idx=Math.max(0,h.time.length-7);
+    station.hourly={times:h.time,wind:h.windspeed_10m,gust:h.windgusts_10m,dir:h.winddirection_10m,nowIdx:idx};
+    renderWindChart(station);
+  } catch(e){ /* chart stays empty */ }
 }
 
 function showParaLoading(on){document.getElementById('paraLoading').style.display=on?'flex':'none';}
@@ -767,13 +784,18 @@ function renderParaMap(){
   const bounds=[];
   paraStations.forEach((s,i)=>{
     const color=windColor(s.wind);
+    const sz = s.isCenter ? 44 : 36;
     const icon=L.divIcon({
       className:'',
-      html:`<div class="leaflet-wind-marker" style="background:${color};width:${s.isCenter?44:36}px;height:${s.isCenter?44:36}px;font-size:${s.isCenter?13:11}px;border-width:${s.isCenter?3:2}px">
-        ${s.isCenter?`<span style="font-size:11px">📍</span>`:s.wind}
+      html:`<div class="wind-marker-wrap">
+        <div class="wind-marker-circle" style="background:${color};width:${sz}px;height:${sz}px;font-size:${s.isCenter?13:11}px">
+          ${s.isCenter?'📍':s.wind}
+        </div>
+        <div class="wind-marker-pin" style="background:${color}"></div>
+        <div class="wind-marker-name" style="color:${color}">${s.name}</div>
       </div>`,
-      iconSize:s.isCenter?[44,44]:[36,36],
-      iconAnchor:s.isCenter?[22,22]:[18,18],
+      iconSize:[sz+40, sz+30],
+      iconAnchor:[(sz+40)/2, sz+10],
     });
     const marker=L.marker([s.lat,s.lon],{icon}).addTo(paraMap);
     marker.bindPopup(`<b>${s.name}</b><br>💨 ${s.wind} km/h ${dirToName(s.dir)}<br>⚡ Gusts: ${s.gust} km/h<br><small style="color:#5e6c84">${windLabel(s.wind)}</small>`);
@@ -789,28 +811,35 @@ function renderParaMap(){
 function selectStation(idx){
   selectedStation=paraStations[idx];
   document.querySelectorAll('.station-card').forEach((el,i)=>el.classList.toggle('selected',i===idx));
-  renderWindChart(selectedStation);
+  if(selectedStation.hourly) renderWindChart(selectedStation);
+  else fetchAndRenderChart(selectedStation);
 }
 
 function renderParaStations(){
   const wrap=document.getElementById('paraStations');
-  wrap.innerHTML=`<div class="stations-header">Wind Stations (${paraRadius} km radius)</div>`+
-  paraStations.map((s,i)=>`
-    <div class="station-card${i===0?' selected':''}" onclick="selectStation(${i})">
+  const dist=s=>Math.round(haversine(paraLat,paraLon,s.lat,s.lon));
+  wrap.innerHTML=`<div class="stations-header">${paraStations.length} METAR stations nearby</div>`+
+  paraStations.map((s,i)=>{
+    const gustStr=s.gust!=null?`${s.gust} km/h`:'—';
+    const dirStr=s.dir<0?'Variable':`${dirToName(s.dir)} ${s.dir}°`;
+    return`<div class="station-card${i===0?' selected':''}" onclick="selectStation(${i})">
       <div class="station-top">
-        <span class="station-name">${s.isCenter?'📍 '+s.name:s.name}</span>
-        <span class="station-dist">${s.dist>0?s.dist+' km':'center'}</span>
+        <div>
+          <div class="station-name">${esc(s.name)}</div>
+          <div style="font-size:10px;color:var(--text-muted);font-weight:600;margin-top:1px">${s.icao} · ${dist(s)} km away</div>
+        </div>
       </div>
       <div class="station-wind">
         <div class="wind-speed-big ${windClass(s.wind)}">${s.wind}<small style="font-size:13px;font-weight:600"> km/h</small></div>
-        <div class="wind-arrow" style="transform:rotate(${s.dir}deg)">${dirToArrow(s.dir)}</div>
+        <div class="wind-arrow" style="transform:rotate(${Math.max(0,s.dir)}deg)">${s.dir<0?'~':dirToArrow(s.dir)}</div>
         <div class="wind-details">
-          <div class="wind-detail-row">⚡ Gusts <strong>${s.gust} km/h</strong></div>
-          <div class="wind-detail-row">🧭 <strong>${dirToName(s.dir)}</strong> (${s.dir}°)</div>
+          <div class="wind-detail-row">⚡ Gusts <strong>${gustStr}</strong></div>
+          <div class="wind-detail-row">🧭 <strong>${dirStr}</strong></div>
           <div class="wind-detail-row" style="color:${windColor(s.wind)};font-weight:600">${windLabel(s.wind)}</div>
         </div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function renderWindChart(station){
@@ -868,3 +897,4 @@ loadState();initSidebar();render();
 </script>
 </body>
 </html>
+              
