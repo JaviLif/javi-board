@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Javi's Board</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -448,7 +451,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div><!-- /app -->
 
 <!-- Version badge -->
-<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v0.3</div>
+<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v0.4</div>
 
 <!-- Mobile nav -->
 <nav class="bottom-nav">
@@ -689,7 +692,8 @@ async function fetchWindData(){
   // Bounding box ~200 km around user
   const d=1.8;
   const bbox=`${(paraLat-d).toFixed(2)},${(paraLon-d*1.5).toFixed(2)},${(paraLat+d).toFixed(2)},${(paraLon+d*1.5).toFixed(2)}`;
-  const metarURL=`https://aviationweather.gov/api/data/metar?bbox=${bbox}&format=json&hours=2`;
+  const rawURL=`https://aviationweather.gov/api/data/metar?bbox=${bbox}&format=json&hours=2`;
+  const metarURL=`https://corsproxy.io/?${encodeURIComponent(rawURL)}`;
 
   try{
     const res=await fetch(metarURL);
