@@ -11,7 +11,7 @@ if exist commit-msg.txt (
   git commit -m "%MSG%"
   del commit-msg.txt
 ) else (
-  git commit -m "Update" --allow-empty
+  git commit -m "v0.4: fix METAR CORS error via corsproxy, add no-cache headers so phone always loads latest"
 )
 
 git push
