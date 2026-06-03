@@ -450,7 +450,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div><!-- /app -->
 
 <!-- Version badge -->
-<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v1.0</div>
+<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v1.1</div>
 
 <!-- Mobile nav -->
 <nav class="bottom-nav">
@@ -491,9 +491,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="cat-list" id="catList"></div>
     <button class="btn-add-cat" onclick="addCategory()">＋ Add category</button>
     <hr class="settings-divider">
+
+    <!-- SYNC SECTION -->
+    <h2 style="font-size:14px;margin-bottom:4px">📡 Cross-device Sync</h2>
+    <p class="subtitle">Stores tasks in your GitHub repo so any device stays in sync. Enter a Personal Access Token with <code>repo</code> scope — stored only in this browser.</p>
+    <div class="form-group">
+      <label>GitHub Token</label>
+      <input type="password" id="syncTokenInput" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off"/>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+      <button onclick="testAndSaveToken()" style="padding:7px 14px;border-radius:6px;border:1.5px solid var(--accent);background:var(--accent-light);color:var(--accent);font-size:12px;font-weight:700;cursor:pointer">Connect</button>
+      <span id="syncStatus" style="font-size:11px;color:var(--text-muted)"></span>
+    </div>
+    <p style="font-size:10px;color:var(--text-muted);margin-top:4px">Tasks are saved as <code>tasks.json</code> in your public repo. Leave blank to use local storage only.</p>
+    <hr class="settings-divider">
+
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeSettings()">Cancel</button>
-      <button class="btn-save" onclick="saveSettings()">Save</button>
+      <button class="btn-save" onclick="saveSettings()">Save categories</button>
     </div>
   </div>
 </div>
@@ -528,12 +543,106 @@ let paraMap=null,paraMarkers=[],windChart=null;
 let paraLat=null,paraLon=null,paraRadius=10,paraStations=[];
 let selectedStation=null;
 
+/* ══════ GITHUB SYNC ══════
+   Stores tasks.json in the repo. Token lives only in localStorage.
+   Read: public raw URL (no auth). Write: GitHub API with token.
+*/
+const SYNC_REPO='JaviLif/javi-board';
+const SYNC_FILE='tasks.json';
+let syncToken=localStorage.getItem('gh_sync_token')||'';
+let syncFileSha=null;
+let syncTimer=null;
+
+function setSyncStatus(msg,color='var(--text-muted)'){
+  const el=document.getElementById('syncStatus');
+  if(el){el.textContent=msg;el.style.color=color;}
+}
+function showSyncIndicator(msg){
+  // Shows in stats bar
+  const el=document.getElementById('syncIndicator');
+  if(el) el.textContent=msg;
+}
+
+async function loadFromGitHub(){
+  try{
+    const url=`https://raw.githubusercontent.com/${SYNC_REPO}/main/${SYNC_FILE}?t=${Date.now()}`;
+    const data=await fetch(url).then(r=>{if(!r.ok)throw new Error('not found');return r.json();});
+    if(data.tasks&&data.cats){
+      tasks=data.tasks; cats=data.cats;
+      // Cache locally too
+      localStorage.setItem('javi_tasks_v3',JSON.stringify(tasks));
+      localStorage.setItem('javi_cats_v3',JSON.stringify(cats));
+      showSyncIndicator('☁️ synced');
+      return true;
+    }
+  }catch{}
+  return false;
+}
+
+async function getFileSha(){
+  if(!syncToken) return null;
+  try{
+    const r=await fetch(`https://api.github.com/repos/${SYNC_REPO}/contents/${SYNC_FILE}`,
+      {headers:{Authorization:`token ${syncToken}`,'Accept':'application/vnd.github.v3+json'}});
+    if(r.ok){const d=await r.json();return d.sha;}
+  }catch{}
+  return null;
+}
+
+async function pushToGitHub(){
+  if(!syncToken) return;
+  try{
+    if(!syncFileSha) syncFileSha=await getFileSha();
+    const payload={tasks,cats,updated:Date.now()};
+    const content=btoa(unescape(encodeURIComponent(JSON.stringify(payload,null,2))));
+    const body={message:'Sync: tasks updated',content};
+    if(syncFileSha) body.sha=syncFileSha;
+    const r=await fetch(`https://api.github.com/repos/${SYNC_REPO}/contents/${SYNC_FILE}`,{
+      method:'PUT',
+      headers:{Authorization:`token ${syncToken}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},
+      body:JSON.stringify(body)
+    });
+    if(r.ok){
+      const d=await r.json();
+      syncFileSha=d.content?.sha;
+      showSyncIndicator(`☁️ synced ${new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}`);
+    }
+  }catch(e){showSyncIndicator('⚠️ sync failed');}
+}
+
+function schedulePush(){
+  showSyncIndicator('⏳ saving…');
+  clearTimeout(syncTimer);
+  syncTimer=setTimeout(pushToGitHub,3000);
+}
+
+async function testAndSaveToken(){
+  const token=document.getElementById('syncTokenInput').value.trim();
+  if(!token){setSyncStatus('Enter a token first','var(--danger)');return;}
+  setSyncStatus('Connecting…','var(--text-muted)');
+  try{
+    const r=await fetch(`https://api.github.com/repos/${SYNC_REPO}`,
+      {headers:{Authorization:`token ${token}`,'Accept':'application/vnd.github.v3+json'}});
+    if(!r.ok) throw new Error('Bad token or no repo access');
+    syncToken=token;
+    localStorage.setItem('gh_sync_token',token);
+    syncFileSha=null; // reset so it re-fetches SHA
+    setSyncStatus('✅ Connected — tasks will sync automatically','var(--accent)');
+    showSyncIndicator('☁️ connected');
+    schedulePush(); // immediate push of current state
+  }catch(e){setSyncStatus('❌ Failed: '+e.message,'var(--danger)');}
+}
+
 /* ══════ PERSIST ══════ */
 function loadState(){
   try{tasks=JSON.parse(localStorage.getItem('javi_tasks_v3')||'null')||SEED_TASKS;}catch{tasks=SEED_TASKS;}
   try{cats=JSON.parse(localStorage.getItem('javi_cats_v3')||'null')||DEFAULT_CATS;}catch{cats=DEFAULT_CATS;}
 }
-function saveState(){localStorage.setItem('javi_tasks_v3',JSON.stringify(tasks));localStorage.setItem('javi_cats_v3',JSON.stringify(cats));}
+function saveState(){
+  localStorage.setItem('javi_tasks_v3',JSON.stringify(tasks));
+  localStorage.setItem('javi_cats_v3',JSON.stringify(cats));
+  if(syncToken) schedulePush();
+}
 
 /* ══════ SIDEBAR ══════ */
 function toggleSidebar(){sidebarCollapsed=!sidebarCollapsed;localStorage.setItem('sc',sidebarCollapsed?'1':'0');document.getElementById('sidebar').classList.toggle('collapsed',sidebarCollapsed);}
@@ -547,8 +656,8 @@ function switchTab(tab){
     document.getElementById(`nav-${t}`)?.classList.toggle('active',t===tab);
     document.getElementById(`mob-${t}`)?.classList.toggle('active',t===tab);
   });
-  // settings button in footer should never appear active
-  document.querySelectorAll('.sidebar-footer .nav-item').forEach(el=>el.classList.remove('active'));
+  // Categories only relevant on Tasks tab
+  document.querySelector('.sidebar-footer').style.display=tab==='board'?'':'none';
   if(tab==='news'){document.getElementById('newsBadge').style.display='none';if(!newsArticles.length)fetchNews(false);}
   if(tab==='para'){initParaMap();}
 }
@@ -556,7 +665,7 @@ function switchTab(tab){
 /* ══════ BOARD ══════ */
 function renderFilterBar(){const bar=document.getElementById('filterBar');if(!bar)return;bar.innerHTML=[{id:'all',label:'All'},...cats].map(c=>`<button class="filter-btn${activeFilter===c.id?' active':''}" onclick="setFilter('${c.id}')">${esc(c.label)}</button>`).join('');}
 function setFilter(f){activeFilter=f;render();}
-function renderStats(){const total=tasks.length,done=tasks.filter(t=>t.col==='done').length,prog=tasks.filter(t=>t.col==='progress').length,high=tasks.filter(t=>t.priority==='high'&&t.col!=='done').length;document.getElementById('statsBar').innerHTML=`<span>${total} tasks</span><span>·</span><span><strong>${done}</strong> done</span><span>·</span><span><strong>${prog}</strong> in progress</span><span>·</span><span class="${high>0?'stat-danger':''}"><strong>${high}</strong> high-priority open</span>`;}
+function renderStats(){const total=tasks.length,done=tasks.filter(t=>t.col==='done').length,prog=tasks.filter(t=>t.col==='progress').length,high=tasks.filter(t=>t.priority==='high'&&t.col!=='done').length;document.getElementById('statsBar').innerHTML=`<span>${total} tasks</span><span>·</span><span><strong>${done}</strong> done</span><span>·</span><span><strong>${prog}</strong> in progress</span><span>·</span><span class="${high>0?'stat-danger':''}"><strong>${high}</strong> high-priority open</span><span>·</span><span id="syncIndicator" style="color:var(--text-muted)">${syncToken?'☁️ synced':'💾 local only'}</span>`;}
 function filteredTasks(c){return tasks.filter(t=>t.col===c&&(activeFilter==='all'||t.cat===activeFilter));}
 function render(){
   renderFilterBar();renderStats();
@@ -602,7 +711,13 @@ function saveTask(){const title=document.getElementById('fTitle').value.trim();i
 function deleteTask(id){tasks=tasks.filter(t=>t.id!==id);saveState();render();}
 
 /* ══════ SETTINGS ══════ */
-function openSettings(){settingsDraft=cats.map(c=>({...c}));renderCatList();document.getElementById('settingsOverlay').classList.add('open');}
+function openSettings(){
+  settingsDraft=cats.map(c=>({...c}));renderCatList();
+  const inp=document.getElementById('syncTokenInput');
+  if(inp) inp.value=syncToken?'••••••••••••':'';
+  setSyncStatus(syncToken?'✅ Connected':'Not connected',syncToken?'var(--accent)':'var(--text-muted)');
+  document.getElementById('settingsOverlay').classList.add('open');
+}
 function closeSettings(){document.getElementById('settingsOverlay').classList.remove('open');settingsDraft=[];}
 function renderCatList(){document.getElementById('catList').innerHTML=settingsDraft.map((c,i)=>`<div class="cat-item"><div class="cat-swatch" style="background:${c.color}" onclick="toggleColorPicker(${i})"></div><input class="cat-name-input" value="${esc(c.label)}" oninput="settingsDraft[${i}].label=this.value" placeholder="Name"/><button class="cat-del-btn" onclick="removeCat(${i})">✕</button></div><div class="color-picker-wrap" id="picker-${i}">${PALETTE.map(col=>`<div class="color-swatch${c.color===col?' selected':''}" style="background:${col}" onclick="pickColor(${i},'${col}',this)"></div>`).join('')}</div>`).join('');}
 function toggleColorPicker(i){document.querySelectorAll('.color-picker-wrap.open').forEach(p=>{if(p.id!==`picker-${i}`)p.classList.remove('open');});document.getElementById(`picker-${i}`).classList.toggle('open');}
@@ -1028,6 +1143,8 @@ document.addEventListener('keydown',e=>{
 
 /* ══════ INIT ══════ */
 loadState();initSidebar();render();
+// Load from GitHub in background — updates UI if newer data found
+loadFromGitHub().then(loaded=>{ if(loaded){ render(); } });
 </script>
 </body>
 </html>
