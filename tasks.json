@@ -1,0 +1,77 @@
+{
+  "tasks": [
+    {
+      "id": "t1",
+      "title": "Review Rogier's thesis document",
+      "desc": "Feedback from Javi + Morris (v. 02/06)",
+      "cat": "work",
+      "priority": "high",
+      "col": "todo",
+      "due": "",
+      "created": 1780411147201
+    },
+    {
+      "id": "t2",
+      "title": "Architecture decision: EV fleet telemetry",
+      "desc": "Evaluate MQTT vs WebSocket for real-time monitoring",
+      "cat": "work",
+      "priority": "high",
+      "col": "backlog",
+      "due": "",
+      "created": 1780411147201
+    },
+    {
+      "id": "t3",
+      "title": "Research Amsterdam neighbourhoods",
+      "desc": "Compare Jordaan, Oud-West, De Pijp for house purchase",
+      "cat": "house",
+      "priority": "medium",
+      "col": "progress",
+      "due": "",
+      "created": 1780411147201
+    },
+    {
+      "id": "t4",
+      "title": "SE1-T112 watchdog — verify in prod",
+      "desc": "Morris marked closed. Confirm stable.",
+      "cat": "work",
+      "priority": "medium",
+      "col": "review",
+      "due": "",
+      "created": 1780411147201
+    },
+    {
+      "id": "xmpxr490co9k",
+      "created": 1780472100252,
+      "title": "dfgdsf",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": ""
+    }
+  ],
+  "cats": [
+    {
+      "id": "work",
+      "label": "Work",
+      "color": "#0052cc"
+    },
+    {
+      "id": "personal",
+      "label": "Personal",
+      "color": "#6554c0"
+    },
+    {
+      "id": "house",
+      "label": "House",
+      "color": "#00875a"
+    },
+    {
+      "id": "xmpwqty2u8b2",
+      "label": "blabla",
+      "color": "#de350b"
+    }
+  ],
+  "updated": 1780473025413
+}
