@@ -69,6 +69,16 @@
       "priority": "medium",
       "col": "backlog",
       "due": ""
+    },
+    {
+      "id": "xmpy26v8pgsj",
+      "created": 1780490698153,
+      "title": "Phone to pc",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": ""
     }
   ],
   "cats": [
@@ -93,5 +103,5 @@
       "color": "#de350b"
     }
   ],
-  "updated": 1780490693737
+  "updated": 1780490701160
 }
