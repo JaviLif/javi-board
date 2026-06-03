@@ -39,46 +39,6 @@
       "col": "review",
       "due": "",
       "created": 1780411147201
-    },
-    {
-      "id": "xmpxr490co9k",
-      "created": 1780472100252,
-      "title": "dfgdsf",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": ""
-    },
-    {
-      "id": "xmpy1gqoqaqj",
-      "created": 1780489479194,
-      "title": "Test",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": ""
-    },
-    {
-      "id": "xmpy2585wuef",
-      "created": 1780490621588,
-      "title": "Testo pc to phone",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": ""
-    },
-    {
-      "id": "xmpyjip7jway",
-      "created": 1780519803679,
-      "title": "hiola",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": ""
     }
   ],
   "cats": [
@@ -103,5 +63,5 @@
       "color": "#de350b"
     }
   ],
-  "updated": 1780519807029
+  "updated": 1780519916958
 }
