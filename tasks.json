@@ -32,7 +32,7 @@
     },
     {
       "id": "t4",
-      "title": "SE1-T112 watchdog — verify in prod",
+      "title": "SE1-T112 watchdog â verify in prod",
       "desc": "Morris marked closed. Confirm stable.",
       "cat": "work",
       "priority": "medium",
@@ -44,6 +44,16 @@
       "id": "xmpyjo6yt8x4",
       "created": 1780520059973,
       "title": "Phone",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": ""
+    },
+    {
+      "id": "xmpyk8jqkwfi",
+      "created": 1780521009644,
+      "title": "laptop",
       "desc": "",
       "cat": "work",
       "priority": "medium",
@@ -73,5 +83,5 @@
       "color": "#de350b"
     }
   ],
-  "updated": 1780520063533
+  "updated": 1780521012653
 }
