@@ -26,7 +26,7 @@
       "desc": "Compare Jordaan, Oud-West, De Pijp for house purchase",
       "cat": "house",
       "priority": "medium",
-      "col": "progress",
+      "col": "review",
       "due": "",
       "created": 1780411147201
     },
@@ -93,5 +93,5 @@
       "color": "#de350b"
     }
   ],
-  "updated": 1780521063578
+  "updated": 1780521073224
 }
