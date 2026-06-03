@@ -6,7 +6,7 @@
       "desc": "Feedback from Javi + Morris (v. 02/06)",
       "cat": "work",
       "priority": "high",
-      "col": "todo",
+      "col": "backlog",
       "due": "",
       "created": 1780411147201
     },
@@ -41,9 +41,9 @@
       "created": 1780411147201
     },
     {
-      "id": "xmpxs78v2eko",
-      "created": 1780473919646,
-      "title": "Test",
+      "id": "xmpxr490co9k",
+      "created": 1780472100252,
+      "title": "dfgdsf",
       "desc": "",
       "cat": "work",
       "priority": "medium",
@@ -73,5 +73,5 @@
       "color": "#de350b"
     }
   ],
-  "updated": 1780473939332
+  "updated": 1780474011493
 }
