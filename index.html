@@ -450,7 +450,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div><!-- /app -->
 
 <!-- Version badge -->
-<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v1.2</div>
+<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v1.3</div>
 
 <!-- Mobile nav -->
 <nav class="bottom-nav">
@@ -567,14 +567,25 @@ function showSyncIndicator(msg){
 
 async function loadFromGitHub(skipIfNewer=false){
   try{
-    const url=`https://raw.githubusercontent.com/${SYNC_REPO}/main/${SYNC_FILE}?t=${Date.now()}`;
-    const data=await fetch(url).then(r=>{if(!r.ok)throw new Error('not found');return r.json();});
+    let data;
+    if(syncToken){
+      // GitHub API — never cached, always fresh (raw.githubusercontent.com has CDN cache delays)
+      const r=await fetch(`https://api.github.com/repos/${SYNC_REPO}/contents/${SYNC_FILE}`,
+        {headers:{Authorization:`token ${syncToken}`,'Accept':'application/vnd.github.v3+json'}});
+      if(!r.ok) throw new Error('api error');
+      const meta=await r.json();
+      data=JSON.parse(atob(meta.content.replace(/\n/g,'')));
+      syncFileSha=meta.sha; // keep SHA fresh so next push doesn't need a separate getFileSha call
+    } else {
+      // No token — fall back to raw URL with cache-buster
+      const url=`https://raw.githubusercontent.com/${SYNC_REPO}/main/${SYNC_FILE}?t=${Date.now()}`;
+      data=await fetch(url).then(r=>{if(!r.ok)throw new Error('not found');return r.json();});
+    }
     if(data.tasks&&data.cats){
       const remoteTs=data.updated||0;
       if(skipIfNewer && remoteTs<=lastKnownUpdated) return false; // not newer, skip re-render
       tasks=data.tasks; cats=data.cats;
       lastKnownUpdated=remoteTs;
-      // Cache locally too
       localStorage.setItem('javi_tasks_v3',JSON.stringify(tasks));
       localStorage.setItem('javi_cats_v3',JSON.stringify(cats));
       showSyncIndicator('☁️ synced');
@@ -617,6 +628,15 @@ async function pushToGitHub(){
     }
   }catch(e){showSyncIndicator('⚠️ sync failed');}
   finally{isPushing=false;}
+}
+
+async function manualPull(){
+  const btn=document.getElementById('pullBtn');
+  if(btn){btn.textContent='⏳';btn.disabled=true;}
+  const loaded=await loadFromGitHub(false); // force load regardless of timestamp
+  if(loaded){ render(); showSyncIndicator('☁️ pulled'); }
+  else { showSyncIndicator('✓ already up to date'); }
+  if(btn){btn.textContent='↓ Pull';btn.disabled=false;}
 }
 
 function schedulePush(){
@@ -674,7 +694,7 @@ function switchTab(tab){
 /* ══════ BOARD ══════ */
 function renderFilterBar(){const bar=document.getElementById('filterBar');if(!bar)return;bar.innerHTML=[{id:'all',label:'All'},...cats].map(c=>`<button class="filter-btn${activeFilter===c.id?' active':''}" onclick="setFilter('${c.id}')">${esc(c.label)}</button>`).join('');}
 function setFilter(f){activeFilter=f;render();}
-function renderStats(){const total=tasks.length,done=tasks.filter(t=>t.col==='done').length,prog=tasks.filter(t=>t.col==='progress').length,high=tasks.filter(t=>t.priority==='high'&&t.col!=='done').length;document.getElementById('statsBar').innerHTML=`<span>${total} tasks</span><span>·</span><span><strong>${done}</strong> done</span><span>·</span><span><strong>${prog}</strong> in progress</span><span>·</span><span class="${high>0?'stat-danger':''}"><strong>${high}</strong> high-priority open</span><span>·</span><span id="syncIndicator" style="color:var(--text-muted)">${syncToken?'☁️ synced':'💾 local only'}</span>`;}
+function renderStats(){const total=tasks.length,done=tasks.filter(t=>t.col==='done').length,prog=tasks.filter(t=>t.col==='progress').length,high=tasks.filter(t=>t.priority==='high'&&t.col!=='done').length;document.getElementById('statsBar').innerHTML=`<span>${total} tasks</span><span>·</span><span><strong>${done}</strong> done</span><span>·</span><span><strong>${prog}</strong> in progress</span><span>·</span><span class="${high>0?'stat-danger':''}"><strong>${high}</strong> high-priority open</span><span>·</span><span id="syncIndicator" style="color:var(--text-muted)">${syncToken?'☁️ synced':'💾 local only'}</span>${syncToken?`<button onclick="manualPull()" id="pullBtn" style="margin-left:4px;padding:2px 8px;border-radius:12px;border:1px solid var(--border);background:var(--surface);font-size:11px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">↓ Pull</button>`:''}`;}
 function filteredTasks(c){return tasks.filter(t=>t.col===c&&(activeFilter==='all'||t.cat===activeFilter));}
 function render(){
   renderFilterBar();renderStats();
