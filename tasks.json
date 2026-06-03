@@ -69,6 +69,16 @@
       "priority": "medium",
       "col": "backlog",
       "due": ""
+    },
+    {
+      "id": "xmpyjip7jway",
+      "created": 1780519803679,
+      "title": "hiola",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": ""
     }
   ],
   "cats": [
@@ -93,5 +103,5 @@
       "color": "#de350b"
     }
   ],
-  "updated": 1780519789370
+  "updated": 1780519807029
 }
