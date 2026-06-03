@@ -47,23 +47,13 @@
       "desc": "",
       "cat": "work",
       "priority": "medium",
-      "col": "backlog",
+      "col": "todo",
       "due": ""
     },
     {
       "id": "xmpy1gqoqaqj",
       "created": 1780489479194,
       "title": "Test",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": ""
-    },
-    {
-      "id": "xmpy2585wuef",
-      "created": 1780490621588,
-      "title": "Testo pc to phone",
       "desc": "",
       "cat": "work",
       "priority": "medium",
@@ -93,5 +83,5 @@
       "color": "#de350b"
     }
   ],
-  "updated": 1780490661870
+  "updated": 1780490669287
 }
