@@ -69,16 +69,6 @@
       "priority": "medium",
       "col": "backlog",
       "due": ""
-    },
-    {
-      "id": "xmpyjgkozpv4",
-      "created": 1780519704515,
-      "title": "lknhliu",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": ""
     }
   ],
   "cats": [
@@ -103,5 +93,5 @@
       "color": "#de350b"
     }
   ],
-  "updated": 1780519707937
+  "updated": 1780519789370
 }
