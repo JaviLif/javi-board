@@ -77,7 +77,7 @@
       "desc": "",
       "cat": "work",
       "priority": "medium",
-      "col": "backlog",
+      "col": "todo",
       "due": ""
     }
   ],
@@ -108,5 +108,5 @@
       "color": "#ff8b00"
     }
   ],
-  "updated": 1780768213552
+  "updated": 1780768225971
 }
