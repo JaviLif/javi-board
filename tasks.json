@@ -6,7 +6,7 @@
       "desc": "Feedback from Javi + Morris (v. 02/06)",
       "cat": "work",
       "priority": "high",
-      "col": "backlog",
+      "col": "done",
       "due": "",
       "created": 1780411147201
     },
@@ -15,16 +15,6 @@
       "title": "Research Amsterdam neighbourhoods",
       "desc": "Compare Jordaan, Oud-West, De Pijp for house purchase",
       "cat": "house",
-      "priority": "medium",
-      "col": "review",
-      "due": "",
-      "created": 1780411147201
-    },
-    {
-      "id": "t4",
-      "title": "SE1-T112 watchdog ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ verify in prod",
-      "desc": "Morris marked closed. Confirm stable.",
-      "cat": "work",
       "priority": "medium",
       "col": "review",
       "due": "",
@@ -98,5 +88,5 @@
       "color": "#ff8b00"
     }
   ],
-  "updated": 1781034802306
+  "updated": 1781034814565
 }
