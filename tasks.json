@@ -1,26 +1,6 @@
 {
   "tasks": [
     {
-      "id": "t1",
-      "title": "Review Rogier's thesis document",
-      "desc": "Feedback from Javi + Morris (v. 02/06)",
-      "cat": "work",
-      "priority": "high",
-      "col": "done",
-      "due": "",
-      "created": 1780411147201
-    },
-    {
-      "id": "t3",
-      "title": "Research Amsterdam neighbourhoods",
-      "desc": "Compare Jordaan, Oud-West, De Pijp for house purchase",
-      "cat": "house",
-      "priority": "medium",
-      "col": "review",
-      "due": "",
-      "created": 1780411147201
-    },
-    {
       "id": "xmq723tw9wf9",
       "created": 1781034752025,
       "title": "Rent car Portugal",
@@ -78,5 +58,5 @@
       "color": "#ff8b00"
     }
   ],
-  "updated": 1781034817598
+  "updated": 1781034824683
 }
