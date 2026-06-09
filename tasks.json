@@ -11,16 +11,6 @@
       "created": 1780411147201
     },
     {
-      "id": "t2",
-      "title": "Architecture decision: EV fleet telemetry",
-      "desc": "Evaluate MQTT vs WebSocket for real-time monitoring",
-      "cat": "work",
-      "priority": "high",
-      "col": "backlog",
-      "due": "",
-      "created": 1780411147201
-    },
-    {
       "id": "t3",
       "title": "Research Amsterdam neighbourhoods",
       "desc": "Compare Jordaan, Oud-West, De Pijp for house purchase",
@@ -39,36 +29,6 @@
       "col": "review",
       "due": "",
       "created": 1780411147201
-    },
-    {
-      "id": "xmpyjo6yt8x4",
-      "created": 1780520059973,
-      "title": "Phone",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": ""
-    },
-    {
-      "id": "xmpyk8jqkwfi",
-      "created": 1780521009644,
-      "title": "laptop",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": ""
-    },
-    {
-      "id": "xmpyk8xbpz2f",
-      "created": 1780521027253,
-      "title": "Test",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": ""
     },
     {
       "id": "xmq0s9xp3phi",
@@ -138,5 +98,5 @@
       "color": "#ff8b00"
     }
   ],
-  "updated": 1781034792881
+  "updated": 1781034802306
 }
