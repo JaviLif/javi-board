@@ -607,6 +607,7 @@ async function getFileSha(){
 
 async function pushToGitHub(){
   if(!syncToken) return;
+  syncTimer=null; // clear so poll knows no push is pending
   isPushing=true;
   try{
     if(!syncFileSha) syncFileSha=await getFileSha();
