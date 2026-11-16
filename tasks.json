@@ -102,17 +102,6 @@
       "col": "backlog",
       "due": "",
       "tags": []
-    },
-    {
-      "id": "xmwj9nq3thwx",
-      "created": 1794833725673,
-      "title": "Photos stukkador",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": "",
-      "tags": []
     }
   ],
   "cats": [
@@ -160,5 +149,5 @@
       "tags": []
     }
   ],
-  "updated": 1794833758333
+  "updated": 1794833759717
 }
