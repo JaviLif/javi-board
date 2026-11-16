@@ -102,6 +102,19 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwjeaalsvem",
+      "created": 1794841497136,
+      "title": "Requirements about the coooling of the pack to avoid condesation",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": [
+        "xmwj4oln956w"
+      ]
     }
   ],
   "cats": [
@@ -149,5 +162,5 @@
       "tags": []
     }
   ],
-  "updated": 1794833759717
+  "updated": 1794841498142
 }
