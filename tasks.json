@@ -65,6 +65,19 @@
       "tags": [
         "xmwj4tc198a4"
       ]
+    },
+    {
+      "id": "xmwj4x4hq1ur",
+      "created": 1794825766142,
+      "title": "12V Fuse Box Implementation",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": [
+        "xmwj4x4hq1ev"
+      ]
     }
   ],
   "cats": [
@@ -109,7 +122,13 @@
       "label": "Requirements",
       "color": "#ff8b00",
       "bg": "#fff7e6"
+    },
+    {
+      "id": "xmwj4x4hq1ev",
+      "label": "HX 90",
+      "color": "#0052cc",
+      "bg": "#e8f0fe"
     }
   ],
-  "updated": 1794825734551
+  "updated": 1794825767158
 }
