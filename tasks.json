@@ -12,17 +12,6 @@
       "tags": [
         "xmwj4oln956w"
       ]
-    },
-    {
-      "id": "xmwj4p5dyxwq",
-      "created": 1794825394054,
-      "title": "dsfgv",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": "",
-      "tags": []
     }
   ],
   "cats": [
@@ -57,5 +46,5 @@
       "bg": "#e3fcef"
     }
   ],
-  "updated": 1794825395055
+  "updated": 1794825400068
 }
