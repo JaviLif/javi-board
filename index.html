@@ -222,7 +222,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     </button>
   </nav>
   <div class="sidebar-footer">
-    <div style="text-align:center;font-size:9.5px;font-weight:700;color:var(--text-muted);letter-spacing:.4px;padding:4px 0 2px;opacity:.7">v1.0.6</div>
+    <div style="text-align:center;font-size:9.5px;font-weight:700;color:var(--text-muted);letter-spacing:.4px;padding:4px 0 2px;opacity:.7">v1.0.7</div>
     <button class="nav-item" onclick="openSettings()">
       <span class="nav-icon">⚙️</span><span class="nav-label">Settings</span>
     </button>
@@ -261,7 +261,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div><!-- /app -->
 
 <!-- Version badge -->
-<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v1.0.6</div>
+<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v1.0.7</div>
 
 <!-- Mobile nav -->
 <nav class="bottom-nav">
@@ -415,7 +415,7 @@ async function loadFromGitHub(skipIfNewer=false){
       const remoteTs=data.updated||0;
       if(skipIfNewer && remoteTs<=lastKnownUpdated) return false; // not newer, skip re-render
       tasks=data.tasks; cats=data.cats;
-      cats=migrateCatTags(cats);
+      cats=migrateCatTags(cats,tasks);
       lastKnownUpdated=remoteTs;
       localStorage.setItem('javi_tasks_v3',JSON.stringify(tasks));
       localStorage.setItem('javi_cats_v3',JSON.stringify(cats));
@@ -495,16 +495,17 @@ async function testAndSaveToken(){
 }
 
 /* ══════ PERSIST ══════ */
-function migrateCatTags(catsArr){
+function migrateCatTags(catsArr,tasksArr){
   // Ensure every cat has a tags array
   let result=catsArr.map(c=>({...c,tags:c.tags||DEFAULT_TAGS.map(t=>({...t}))}));
-  // Recover any old global inline tags from javi_tags_v1 (created before per-cat tags)
+  // Recover old global inline tags (javi_tags_v1) — only into cats whose tasks reference them
   try{
     const oldGT=JSON.parse(localStorage.getItem('javi_tags_v1')||'null');
-    if(oldGT&&oldGT.length){
+    if(oldGT&&oldGT.length&&tasksArr){
       result=result.map(c=>{
+        const usedInCat=new Set((tasksArr||[]).filter(t=>t.cat===c.id).flatMap(t=>t.tags||[]));
         const existingIds=new Set(c.tags.map(t=>t.id));
-        const extra=oldGT.filter(t=>!existingIds.has(t.id));
+        const extra=oldGT.filter(t=>usedInCat.has(t.id)&&!existingIds.has(t.id));
         return extra.length?{...c,tags:[...c.tags,...extra]}:c;
       });
     }
@@ -514,7 +515,7 @@ function migrateCatTags(catsArr){
 function loadState(){
   try{tasks=JSON.parse(localStorage.getItem('javi_tasks_v3')||'null')||SEED_TASKS;}catch{tasks=SEED_TASKS;}
   try{cats=JSON.parse(localStorage.getItem('javi_cats_v3')||'null')||DEFAULT_CATS;}catch{cats=DEFAULT_CATS;}
-  cats=migrateCatTags(cats);
+  cats=migrateCatTags(cats,tasks);
 }
 function saveState(){
   localStorage.setItem('javi_tasks_v3',JSON.stringify(tasks));
