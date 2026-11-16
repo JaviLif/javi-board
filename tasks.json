@@ -25,6 +25,19 @@
       "tags": [
         "xmwj4sjgu6lp"
       ]
+    },
+    {
+      "id": "xmwj4vlq5xjh",
+      "created": 1794825695165,
+      "title": "Requirements Display(s) W150Fi",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": [
+        "xmwj4tc198a4"
+      ]
     }
   ],
   "cats": [
@@ -63,7 +76,13 @@
       "label": "HX 70",
       "color": "#de350b",
       "bg": "#ffebe6"
+    },
+    {
+      "id": "xmwj4tc198a4",
+      "label": "Requirements",
+      "color": "#ff8b00",
+      "bg": "#fff7e6"
     }
   ],
-  "updated": 1794825559742
+  "updated": 1794825696177
 }
