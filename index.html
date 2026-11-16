@@ -643,7 +643,7 @@ async function manualPull(){
 function schedulePush(){
   showSyncIndicator('⏳ saving…');
   clearTimeout(syncTimer);
-  syncTimer=setTimeout(pushToGitHub,3000);
+  syncTimer=setTimeout(pushToGitHub,1000); // 1s debounce — fast enough to feel live
 }
 
 async function testAndSaveToken(){
@@ -1176,13 +1176,20 @@ loadState();initSidebar();render();
 // Load from GitHub on startup — updates UI if newer data found
 loadFromGitHub().then(loaded=>{ if(loaded){ render(); } });
 
-// Auto-poll GitHub every 15 seconds — only pulls if remote is newer and no push is pending
-setInterval(async ()=>{
-  if(!syncToken) return;          // no token = no sync
-  if(syncTimer || isPushing) return; // push in progress — skip to avoid race
-  const loaded = await loadFromGitHub(true); // skipIfNewer=true
-  if(loaded){ render(); }
-}, 15000);
+// ── Live sync strategy ──────────────────────────────────────────────────────
+// 1. Instant pull when user switches back to this tab/app (visibility change)
+// 2. Poll every 3s while page is visible and active
+// 3. Slow 30s poll when page is in background (battery-friendly)
+async function maybePull(){
+  if(!syncToken||syncTimer||isPushing) return;
+  const loaded=await loadFromGitHub(true);
+  if(loaded) render();
+}
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible') maybePull(); // instant on tab/app switch
+});
+setInterval(()=>{ if(document.visibilityState==='visible') maybePull(); },3000);  // active poll
+setInterval(()=>{ if(document.visibilityState!=='visible') maybePull(); },30000); // background
 </script>
 </body>
 </html>
