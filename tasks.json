@@ -117,6 +117,19 @@
       "tags": [
         "xmwj4oln956w"
       ]
+    },
+    {
+      "id": "xmwjedh3zcrq",
+      "created": 1794841645535,
+      "title": "Test OBS system",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": [
+        "xmwj4oln956w"
+      ]
     }
   ],
   "cats": [
@@ -164,5 +177,5 @@
       "tags": []
     }
   ],
-  "updated": 1794841632886
+  "updated": 1794841646546
 }
