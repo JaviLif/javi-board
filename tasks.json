@@ -23,5 +23,19 @@
       "color": "#00875a"
     }
   ],
-  "updated": 1794822699993
+  "tags": [
+    {
+      "id": "xmwj4odvgzga",
+      "label": "HX Series",
+      "color": "#0052cc",
+      "bg": "#e8f0fe"
+    },
+    {
+      "id": "xmwj4oln956w",
+      "label": "W150",
+      "color": "#6554c0",
+      "bg": "#ede8ff"
+    }
+  ],
+  "updated": 1794825374112
 }
