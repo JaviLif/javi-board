@@ -38,6 +38,20 @@
       "tags": [
         "xmwj4tc198a4"
       ]
+    },
+    {
+      "id": "xmwj4vxevd6t",
+      "created": 1794825710311,
+      "title": "Blink Requirements",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": [
+        "xmwj4tc198a4",
+        "xmwj4sjgu6lp"
+      ]
     }
   ],
   "cats": [
@@ -84,5 +98,5 @@
       "bg": "#fff7e6"
     }
   ],
-  "updated": 1794825696177
+  "updated": 1794825711321
 }
