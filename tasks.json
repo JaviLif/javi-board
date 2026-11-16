@@ -78,6 +78,19 @@
       "tags": [
         "xmwj4x4hq1ev"
       ]
+    },
+    {
+      "id": "xmwj6f4kgan2",
+      "created": 1794828285664,
+      "title": "To Put Wirtgen IoT System after the TBS",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": [
+        "xmwj4oln956w"
+      ]
     }
   ],
   "cats": [
@@ -130,5 +143,5 @@
       "bg": "#e8f0fe"
     }
   ],
-  "updated": 1794825767158
+  "updated": 1794828286669
 }
