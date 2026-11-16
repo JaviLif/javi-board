@@ -108,13 +108,46 @@
     {
       "id": "work",
       "label": "Work",
-      "color": "#0052cc"
+      "color": "#0052cc",
+      "tags": [
+        {
+          "id": "xmwj4odvgzga",
+          "label": "HX Series",
+          "color": "#0052cc",
+          "bg": "#e8f0fe"
+        },
+        {
+          "id": "xmwj4oln956w",
+          "label": "W150",
+          "color": "#6554c0",
+          "bg": "#ede8ff"
+        },
+        {
+          "id": "xmwj4sjgu6lp",
+          "label": "HX 70",
+          "color": "#de350b",
+          "bg": "#ffebe6"
+        },
+        {
+          "id": "xmwj4tc198a4",
+          "label": "Requirements",
+          "color": "#ff8b00",
+          "bg": "#fff7e6"
+        },
+        {
+          "id": "xmwj4x4hq1ev",
+          "label": "HX 90",
+          "color": "#0052cc",
+          "bg": "#e8f0fe"
+        }
+      ]
     },
     {
       "id": "house",
       "label": "House",
-      "color": "#00875a"
+      "color": "#00875a",
+      "tags": []
     }
   ],
-  "updated": 1794829746660
+  "updated": 1794833688015
 }
