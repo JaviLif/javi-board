@@ -57,13 +57,15 @@
       "id": "xmwj4wfceq2v",
       "created": 1794825733550,
       "title": "Requirements: Cell Guard",
-      "desc": "",
+      "desc": "Link the humidty value to the cooling request of the batter to avoid condensation",
       "cat": "work",
       "priority": "medium",
       "col": "backlog",
       "due": "",
       "tags": [
-        "xmwj4tc198a4"
+        "xmwj4tc198a4",
+        "xmwj4oln956w",
+        "xmwj4odvgzga"
       ]
     },
     {
@@ -162,5 +164,5 @@
       "tags": []
     }
   ],
-  "updated": 1794841498142
+  "updated": 1794841582293
 }
