@@ -91,6 +91,17 @@
       "tags": [
         "xmwj4oln956w"
       ]
+    },
+    {
+      "id": "xmwj77s11oti",
+      "created": 1794829622437,
+      "title": "Make Pctures for Stucador",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -143,5 +154,5 @@
       "bg": "#e8f0fe"
     }
   ],
-  "updated": 1794828286669
+  "updated": 1794829623439
 }
