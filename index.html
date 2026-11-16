@@ -222,7 +222,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     </button>
   </nav>
   <div class="sidebar-footer">
-    <div style="text-align:center;font-size:9.5px;font-weight:700;color:var(--text-muted);letter-spacing:.4px;padding:4px 0 2px;opacity:.7">v1.0.3</div>
+    <div style="text-align:center;font-size:9.5px;font-weight:700;color:var(--text-muted);letter-spacing:.4px;padding:4px 0 2px;opacity:.7">v1.0.5</div>
     <button class="nav-item" onclick="openSettings()">
       <span class="nav-icon">⚙️</span><span class="nav-label">Settings</span>
     </button>
@@ -261,7 +261,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div><!-- /app -->
 
 <!-- Version badge -->
-<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v1.0.3</div>
+<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v1.0.5</div>
 
 <!-- Mobile nav -->
 <nav class="bottom-nav">
@@ -278,7 +278,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="form-group"><label>Title *</label><input type="text" id="fTitle" placeholder="What needs to be done?"/></div>
     <div class="form-group"><label>Description</label><textarea id="fDesc" rows="2" placeholder="Optional context…"></textarea></div>
     <div class="form-row">
-      <div class="form-group"><label>Category</label><select id="fCategory"></select></div>
+      <div class="form-group"><label>Category</label><select id="fCategory" onchange="onModalCatChange()"></select></div>
       <div class="form-group"><label>Priority</label><select id="fPriority"><option value="medium">Medium</option><option value="high">High</option><option value="low">Low</option></select></div>
     </div>
     <div class="form-row">
@@ -311,8 +311,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
     <!-- TAGS SECTION -->
     <hr class="settings-divider">
-    <h2 style="font-size:14px;margin-bottom:4px">🏷️ Predefined Tags</h2>
-    <p class="subtitle">These tags are available to pick in every task. You can also create tags directly on a task.</p>
+    <h2 style="font-size:14px;margin-bottom:4px">🏷️ Tags per Category</h2>
+    <p class="subtitle">Each category has its own tags. You can also create tags on the fly directly in any task.</p>
+    <select id="tagCatSelect" onchange="onTagCatChange()" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;background:var(--surface);color:var(--text);margin-bottom:10px;cursor:pointer"></select>
     <div class="cat-list" id="tagList"></div>
     <button class="btn-add-cat" onclick="addTag()">＋ Add tag</button>
     <hr class="settings-divider">
@@ -341,8 +342,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <script>
 /* ══════ CONSTANTS ══════ */
 const PALETTE=['#0052cc','#00875a','#6554c0','#de350b','#ff8b00','#00b8d9','#57d9a3','#ff5630','#8777d9','#2684ff','#172b4d','#97a0af'];
-const DEFAULT_CATS=[{id:'work',label:'Work',color:'#0052cc'},{id:'personal',label:'Personal',color:'#6554c0'},{id:'house',label:'House',color:'#00875a'}];
+// DEFAULT_TAGS is kept as a migration helper for users upgrading from the global-tags format
 const DEFAULT_TAGS=[{id:'urgent',label:'Urgent',color:'#de350b',bg:'#ffebe6'},{id:'blocked',label:'Blocked',color:'#ff8b00',bg:'#fff7e6'},{id:'review',label:'Review',color:'#6554c0',bg:'#ede8ff'},{id:'idea',label:'Idea',color:'#00875a',bg:'#e3fcef'}];
+const DEFAULT_CATS=[
+  {id:'work',label:'Work',color:'#0052cc',tags:[{id:'w-urg',label:'Urgent',color:'#de350b',bg:'#ffebe6'},{id:'w-blk',label:'Blocked',color:'#ff8b00',bg:'#fff7e6'},{id:'w-rev',label:'Review',color:'#6554c0',bg:'#ede8ff'},{id:'w-idea',label:'Idea',color:'#00875a',bg:'#e3fcef'}]},
+  {id:'personal',label:'Personal',color:'#6554c0',tags:[{id:'p-urg',label:'Urgent',color:'#de350b',bg:'#ffebe6'},{id:'p-idea',label:'Idea',color:'#00875a',bg:'#e3fcef'}]},
+  {id:'house',label:'House',color:'#00875a',tags:[{id:'h-urg',label:'Urgent',color:'#de350b',bg:'#ffebe6'},{id:'h-idea',label:'Idea',color:'#00875a',bg:'#e3fcef'}]}
+];
 const COLUMNS=[{id:'backlog',label:'Backlog',dot:'#97a0af'},{id:'todo',label:'To Do',dot:'#ff8b00'},{id:'progress',label:'In Progress',dot:'#0052cc'},{id:'review',label:'Review',dot:'#6554c0'},{id:'done',label:'Done',dot:'#00875a'}];
 const SEED_TASKS=[
   {id:'t1',title:"Review Rogier's thesis document",desc:'Feedback from Javi + Morris (v. 02/06)',cat:'work',priority:'high',col:'todo',due:'',created:Date.now()},
@@ -361,7 +367,7 @@ const RSS2JSON='https://api.rss2json.com/v1/api.json?count=12&rss_url=';
 const NEWS_CACHE='javi_news_v3', NEWS_TTL=30*60*1000;
 
 /* ══════ STATE ══════ */
-let tasks=[],cats=[],tags=[],activeFilter='all',editingTaskId=null,settingsDraft=[],tagsDraft=[];
+let tasks=[],cats=[],activeFilter='all',editingTaskId=null,settingsDraft=[],activeTagCatId=null;
 let modalSelectedTags=[];
 let dragId=null,touchClone=null,touchOffX=0,touchOffY=0;
 let activeTab='board',newsArticles=[],newsFilter='all',newsLoading=false;
@@ -409,11 +415,11 @@ async function loadFromGitHub(skipIfNewer=false){
       const remoteTs=data.updated||0;
       if(skipIfNewer && remoteTs<=lastKnownUpdated) return false; // not newer, skip re-render
       tasks=data.tasks; cats=data.cats;
-      if(data.tags) tags=data.tags;
+      // Migrate: ensure each cat has its own tags (for data from before per-cat tags)
+      cats=cats.map(c=>({...c,tags:c.tags||DEFAULT_TAGS.map(t=>({...t}))}));
       lastKnownUpdated=remoteTs;
       localStorage.setItem('javi_tasks_v3',JSON.stringify(tasks));
       localStorage.setItem('javi_cats_v3',JSON.stringify(cats));
-      localStorage.setItem('javi_tags_v1',JSON.stringify(tags));
       showSyncIndicator('☁️ synced');
       return true;
     }
@@ -438,7 +444,7 @@ async function pushToGitHub(){
   try{
     if(!syncFileSha) syncFileSha=await getFileSha();
     const nowTs=Date.now();
-    const payload={tasks,cats,tags,updated:nowTs};
+    const payload={tasks,cats,updated:nowTs};
     const content=btoa(unescape(encodeURIComponent(JSON.stringify(payload,null,2))));
     const body={message:'Sync: tasks updated',content};
     if(syncFileSha) body.sha=syncFileSha;
@@ -493,12 +499,12 @@ async function testAndSaveToken(){
 function loadState(){
   try{tasks=JSON.parse(localStorage.getItem('javi_tasks_v3')||'null')||SEED_TASKS;}catch{tasks=SEED_TASKS;}
   try{cats=JSON.parse(localStorage.getItem('javi_cats_v3')||'null')||DEFAULT_CATS;}catch{cats=DEFAULT_CATS;}
-  try{tags=JSON.parse(localStorage.getItem('javi_tags_v1')||'null')||DEFAULT_TAGS;}catch{tags=DEFAULT_TAGS;}
+  // Migrate: ensure each cat has its own tags (for data from before per-cat tags)
+  cats=cats.map(c=>({...c,tags:c.tags||DEFAULT_TAGS.map(t=>({...t}))}));
 }
 function saveState(){
   localStorage.setItem('javi_tasks_v3',JSON.stringify(tasks));
   localStorage.setItem('javi_cats_v3',JSON.stringify(cats));
-  localStorage.setItem('javi_tags_v1',JSON.stringify(tags));
   if(syncToken) schedulePush();
 }
 
@@ -545,7 +551,8 @@ function makeCard(t){
   const cat=cats.find(c=>c.id===t.cat)||{label:t.cat,color:'#97a0af'};
   const ts=`background:${cat.color}22;color:${cat.color}`;
   const due=t.due?`<span class="card-date${isOverdue(t.due)?' overdue':''}">📅 ${fmtDate(t.due)}</span>`:'<span></span>';
-  const taskTagsHtml=(t.tags||[]).map(tid=>{const tg=tags.find(x=>x.id===tid);return tg?`<span class="tag-chip" style="background:${tg.bg};color:${tg.color};font-size:10.5px;padding:2px 7px">${esc(tg.label)}</span>`:''}).join('');
+  const taskCat=cats.find(c=>c.id===t.cat);const catTags=(taskCat&&taskCat.tags)||[];
+  const taskTagsHtml=(t.tags||[]).map(tid=>{const tg=catTags.find(x=>x.id===tid);return tg?`<span class="tag-chip" style="background:${tg.bg};color:${tg.color};font-size:10.5px;padding:2px 7px">${esc(tg.label)}</span>`:''}).join('');
   card.innerHTML=`<div class="card-tags"><span class="tag" style="${ts}">${esc(cat.label)}</span><span class="tag tag-priority-${t.priority}">${t.priority}</span></div><div class="card-title">${esc(t.title)}</div>${t.desc?`<div class="card-desc">${esc(t.desc)}</div>`:''}\n${taskTagsHtml?`<div class="card-tags" style="margin-top:5px">${taskTagsHtml}</div>`:''}<div class="card-footer">${due}<div class="card-actions"><button class="btn-card" onclick="editTask('${t.id}')">✏️</button><button class="btn-card del" onclick="deleteTask('${t.id}')">🗑</button></div></div>`;
   setupDrag(card,t.id);return card;
 }
@@ -606,12 +613,23 @@ function saveTask(){
 function deleteTask(id){tasks=tasks.filter(t=>t.id!==id);saveState();render();}
 
 /* ══════ TAGS ══════ */
+function getModalCatTags(){
+  const catId=document.getElementById('fCategory').value;
+  const cat=cats.find(c=>c.id===catId);
+  return (cat&&cat.tags)||[];
+}
 function renderTagPicker(){
+  const catTags=getModalCatTags();
   const wrap=document.getElementById('fTagPicker');
-  wrap.innerHTML=tags.map(t=>{
+  if(!catTags.length){wrap.innerHTML='<span style="font-size:12px;color:var(--text-muted)">No tags defined for this category — type one below to create.</span>';return;}
+  wrap.innerHTML=catTags.map(t=>{
     const sel=modalSelectedTags.includes(t.id);
     return `<span class="tag-chip${sel?' selected':''}" style="background:${t.bg};color:${t.color};${sel?'border-color:'+t.color:''}" onclick="toggleModalTag('${t.id}')">${esc(t.label)}</span>`;
   }).join('');
+}
+function onModalCatChange(){
+  modalSelectedTags=[];
+  renderTagPicker();
 }
 function toggleModalTag(id){
   const i=modalSelectedTags.indexOf(id);
@@ -620,13 +638,17 @@ function toggleModalTag(id){
 }
 function addInlineTag(label){
   label=label.trim();if(!label)return;
+  const catId=document.getElementById('fCategory').value;
+  const cat=cats.find(c=>c.id===catId);
+  if(!cat){return;}
+  if(!cat.tags) cat.tags=[];
   // reuse existing tag if same label (case-insensitive)
-  let existing=tags.find(t=>t.label.toLowerCase()===label.toLowerCase());
+  let existing=cat.tags.find(t=>t.label.toLowerCase()===label.toLowerCase());
   if(!existing){
     const colors=[['#0052cc','#e8f0fe'],['#6554c0','#ede8ff'],['#00875a','#e3fcef'],['#de350b','#ffebe6'],['#ff8b00','#fff7e6']];
-    const [color,bg]=colors[tags.length%colors.length];
+    const [color,bg]=colors[cat.tags.length%colors.length];
     existing={id:uid(),label,color,bg};
-    tags.push(existing);
+    cat.tags.push(existing);
   }
   if(!modalSelectedTags.includes(existing.id)) modalSelectedTags.push(existing.id);
   renderTagPicker();
@@ -640,19 +662,35 @@ function handleTagNewKey(e){
 }
 
 /* ── Settings tags list ── */
+function getActiveTagCatDraft(){return settingsDraft.find(c=>c.id===activeTagCatId)||settingsDraft[0];}
+function renderTagCatSelect(){
+  const sel=document.getElementById('tagCatSelect');
+  if(!sel)return;
+  sel.innerHTML=settingsDraft.map(c=>`<option value="${c.id}"${c.id===activeTagCatId?' selected':''}>${esc(c.label)}</option>`).join('');
+}
+function onTagCatChange(){
+  activeTagCatId=document.getElementById('tagCatSelect').value;
+  renderTagList();
+}
 function renderTagList(){
+  const catDraft=getActiveTagCatDraft();
+  const catTags=(catDraft&&catDraft.tags)||[];
   const list=document.getElementById('tagList');
-  list.innerHTML=tagsDraft.map((t,i)=>`
+  list.innerHTML=catTags.map((t,i)=>`
     <div class="cat-item">
       <span class="cat-swatch" style="background:${t.bg};border-color:${t.color};cursor:default"></span>
-      <input class="cat-name-input" value="${esc(t.label)}" oninput="tagsDraft[${i}].label=this.value"/>
-      <button class="cat-del-btn" onclick="tagsDraft.splice(${i},1);renderTagList()">✕</button>
+      <input class="cat-name-input" value="${esc(t.label)}" oninput="updateTagDraft(${i},this.value)"/>
+      <button class="cat-del-btn" onclick="deleteTagDraft(${i})">✕</button>
     </div>`).join('');
 }
+function updateTagDraft(i,val){const c=getActiveTagCatDraft();if(c&&c.tags[i])c.tags[i].label=val;}
+function deleteTagDraft(i){const c=getActiveTagCatDraft();if(c){c.tags.splice(i,1);renderTagList();}}
 function addTag(){
+  const catDraft=getActiveTagCatDraft();if(!catDraft)return;
+  if(!catDraft.tags) catDraft.tags=[];
   const colors=[['#0052cc','#e8f0fe'],['#6554c0','#ede8ff'],['#00875a','#e3fcef'],['#de350b','#ffebe6'],['#ff8b00','#fff7e6']];
-  const [color,bg]=colors[tagsDraft.length%colors.length];
-  tagsDraft.push({id:uid(),label:'New tag',color,bg});
+  const [color,bg]=colors[catDraft.tags.length%colors.length];
+  catDraft.tags.push({id:uid(),label:'New tag',color,bg});
   renderTagList();
   const inputs=document.querySelectorAll('#tagList .cat-name-input');
   inputs[inputs.length-1]?.select();
@@ -660,8 +698,10 @@ function addTag(){
 
 /* ══════ SETTINGS ══════ */
 function openSettings(){
-  settingsDraft=cats.map(c=>({...c}));renderCatList();
-  tagsDraft=tags.map(t=>({...t}));renderTagList();
+  settingsDraft=cats.map(c=>({...c,tags:(c.tags||[]).map(t=>({...t}))}));
+  renderCatList();
+  activeTagCatId=settingsDraft[0]?.id||null;
+  renderTagCatSelect();renderTagList();
   const inp=document.getElementById('syncTokenInput');
   if(inp) inp.value=syncToken?'••••••••••••':'';
   setSyncStatus(syncToken?'✅ Connected':'Not connected',syncToken?'var(--accent)':'var(--text-muted)');
@@ -671,15 +711,15 @@ function closeSettings(){document.getElementById('settingsOverlay').classList.re
 function renderCatList(){document.getElementById('catList').innerHTML=settingsDraft.map((c,i)=>`<div class="cat-item"><div class="cat-swatch" style="background:${c.color}" onclick="toggleColorPicker(${i})"></div><input class="cat-name-input" value="${esc(c.label)}" oninput="settingsDraft[${i}].label=this.value" placeholder="Name"/><button class="cat-del-btn" onclick="removeCat(${i})">✕</button></div><div class="color-picker-wrap" id="picker-${i}">${PALETTE.map(col=>`<div class="color-swatch${c.color===col?' selected':''}" style="background:${col}" onclick="pickColor(${i},'${col}',this)"></div>`).join('')}</div>`).join('');}
 function toggleColorPicker(i){document.querySelectorAll('.color-picker-wrap.open').forEach(p=>{if(p.id!==`picker-${i}`)p.classList.remove('open');});document.getElementById(`picker-${i}`).classList.toggle('open');}
 function pickColor(i,color,el){settingsDraft[i].color=color;el.closest('.cat-item').querySelector('.cat-swatch').style.background=color;el.closest('.color-picker-wrap').querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('selected'));el.classList.add('selected');}
-function addCategory(){settingsDraft.push({id:uid(),label:'New category',color:PALETTE[settingsDraft.length%PALETTE.length]});renderCatList();const inp=document.querySelectorAll('.cat-name-input');inp[inp.length-1]?.focus();inp[inp.length-1]?.select();}
+function addCategory(){settingsDraft.push({id:uid(),label:'New category',color:PALETTE[settingsDraft.length%PALETTE.length],tags:[]});renderCatList();renderTagCatSelect();const inp=document.querySelectorAll('.cat-name-input');inp[inp.length-1]?.focus();inp[inp.length-1]?.select();}
 function removeCat(i){if(settingsDraft.length<=1){alert('Need at least one category.');return;}settingsDraft.splice(i,1);renderCatList();}
 function saveSettings(){
   document.querySelectorAll('#catList .cat-name-input').forEach((inp,i)=>{if(settingsDraft[i])settingsDraft[i].label=inp.value.trim();});
-  document.querySelectorAll('#tagList .cat-name-input').forEach((inp,i)=>{if(tagsDraft[i])tagsDraft[i].label=inp.value.trim();});
+  // capture any in-progress tag name edits
+  document.querySelectorAll('#tagList .cat-name-input').forEach((inp,i)=>{const c=getActiveTagCatDraft();if(c&&c.tags[i])c.tags[i].label=inp.value.trim();});
   if(settingsDraft.some(c=>!c.label.trim())){alert('All categories need a name.');return;}
-  if(tagsDraft.some(t=>!t.label.trim())){alert('All tags need a name.');return;}
+  if(settingsDraft.some(c=>(c.tags||[]).some(t=>!t.label.trim()))){alert('All tags need a name.');return;}
   cats=settingsDraft.map(c=>({...c}));
-  tags=tagsDraft.map(t=>({...t}));
   if(activeFilter!=='all'&&!cats.find(c=>c.id===activeFilter))activeFilter='all';
   saveState();render();closeSettings();
 }
