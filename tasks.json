@@ -8,7 +8,10 @@
       "cat": "work",
       "priority": "medium",
       "col": "backlog",
-      "due": ""
+      "due": "",
+      "tags": [
+        "xmwj4oln956w"
+      ]
     }
   ],
   "cats": [
@@ -37,5 +40,5 @@
       "bg": "#ede8ff"
     }
   ],
-  "updated": 1794825374112
+  "updated": 1794825380357
 }
