@@ -52,6 +52,19 @@
         "xmwj4tc198a4",
         "xmwj4sjgu6lp"
       ]
+    },
+    {
+      "id": "xmwj4wfceq2v",
+      "created": 1794825733550,
+      "title": "Requirements: Cell Guard",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": [
+        "xmwj4tc198a4"
+      ]
     }
   ],
   "cats": [
@@ -98,5 +111,5 @@
       "bg": "#fff7e6"
     }
   ],
-  "updated": 1794825711321
+  "updated": 1794825734551
 }
