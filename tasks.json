@@ -104,17 +104,6 @@
       "tags": []
     },
     {
-      "id": "xmwj9ne98prg",
-      "created": 1794833710316,
-      "title": "Photos for stukadoren",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmwj9nq3thwx",
       "created": 1794833725673,
       "title": "Photos stukkador",
@@ -171,5 +160,5 @@
       "tags": []
     }
   ],
-  "updated": 1794833756021
+  "updated": 1794833758333
 }
