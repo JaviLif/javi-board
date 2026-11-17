@@ -152,6 +152,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwkv42m3hnz",
+      "created": 1794930226491,
+      "title": "Send aktivitaet Plan to Marianne",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -199,5 +210,5 @@
       "tags": []
     }
   ],
-  "updated": 1794925734815
+  "updated": 1794930227492
 }
