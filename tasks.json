@@ -134,7 +134,7 @@
     {
       "id": "xmwkng1cl9u8",
       "created": 1794917347797,
-      "title": "List of available CAN ID´s",
+      "title": "List of available CAN IDÂ´s",
       "desc": "",
       "cat": "work",
       "priority": "medium",
@@ -146,17 +146,6 @@
       "id": "xmwksfs17huc",
       "created": 1794925733803,
       "title": "Red Requirements List",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "backlog",
-      "due": "",
-      "tags": []
-    },
-    {
-      "id": "xmwkv42m3hnz",
-      "created": 1794930226491,
-      "title": "Send aktivitaet Plan to Marianne",
       "desc": "",
       "cat": "work",
       "priority": "medium",
@@ -210,5 +199,5 @@
       "tags": []
     }
   ],
-  "updated": 1794930227492
+  "updated": 1794930242787
 }
