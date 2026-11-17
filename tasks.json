@@ -165,6 +165,17 @@
       "tags": [
         "xmwkv4vc6uoq"
       ]
+    },
+    {
+      "id": "xmwkv5i308dw",
+      "created": 1794930293196,
+      "title": "Ask Permission to gemeente for isolation pir 120mm ok?",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -219,5 +230,5 @@
       ]
     }
   ],
-  "updated": 1794930264727
+  "updated": 1794930294206
 }
