@@ -125,7 +125,7 @@
       "desc": "",
       "cat": "work",
       "priority": "medium",
-      "col": "todo",
+      "col": "done",
       "due": "",
       "tags": [
         "xmwj4oln956w"
@@ -230,5 +230,5 @@
       ]
     }
   ],
-  "updated": 1795000751614
+  "updated": 1795000753931
 }
