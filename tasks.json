@@ -187,6 +187,17 @@
       "col": "done",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwm4g8orq8v",
+      "created": 1795006376955,
+      "title": "Stukador Quotes",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -241,5 +252,5 @@
       ]
     }
   ],
-  "updated": 1795006364261
+  "updated": 1795006377955
 }
