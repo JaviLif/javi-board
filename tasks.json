@@ -195,7 +195,7 @@
       "desc": "",
       "cat": "house",
       "priority": "medium",
-      "col": "backlog",
+      "col": "todo",
       "due": "",
       "tags": []
     }
@@ -252,5 +252,5 @@
       ]
     }
   ],
-  "updated": 1795006377955
+  "updated": 1795006379737
 }
