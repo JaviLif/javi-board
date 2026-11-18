@@ -176,6 +176,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwm182m634t",
+      "created": 1795000956990,
+      "title": "Check HX Manual",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "todo",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -230,5 +241,5 @@
       ]
     }
   ],
-  "updated": 1795000753931
+  "updated": 1795000957996
 }
