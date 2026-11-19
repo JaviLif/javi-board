@@ -198,6 +198,19 @@
       "col": "todo",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwnb5p1zjb8",
+      "created": 1795078108439,
+      "title": "W370 Motor Test Set Up For Amghad",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": [
+        "xmwj4oln956w"
+      ]
     }
   ],
   "cats": [
@@ -252,5 +265,5 @@
       ]
     }
   ],
-  "updated": 1795015324862
+  "updated": 1795078109446
 }
