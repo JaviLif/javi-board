@@ -134,7 +134,7 @@
     {
       "id": "xmwkng1cl9u8",
       "created": 1794917347797,
-      "title": "List of available CAN IDÂ´s",
+      "title": "List of available CAN ID´s",
       "desc": "",
       "cat": "work",
       "priority": "medium",
@@ -265,5 +265,5 @@
       ]
     }
   ],
-  "updated": 1795078109446
+  "updated": 1795099558367
 }
