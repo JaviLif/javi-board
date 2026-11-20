@@ -299,6 +299,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwpm4c6naha",
+      "created": 1795217453231,
+      "title": "Taak: remove old switches",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -353,5 +364,5 @@
       ]
     }
   ],
-  "updated": 1795217431842
+  "updated": 1795217454232
 }
