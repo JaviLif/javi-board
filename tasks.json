@@ -310,6 +310,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwpm6ndm8ei",
+      "created": 1795217561050,
+      "title": "Task: remove fussbidenleiste",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -364,5 +375,5 @@
       ]
     }
   ],
-  "updated": 1795217530362
+  "updated": 1795217562052
 }
