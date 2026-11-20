@@ -266,6 +266,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwpm2cnhtpu",
+      "created": 1795217360525,
+      "title": "Task: remove paperwall",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -320,5 +331,5 @@
       ]
     }
   ],
-  "updated": 1795217330520
+  "updated": 1795217361526
 }
