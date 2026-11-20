@@ -233,6 +233,17 @@
       "col": "todo",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwpm0o5sm1i",
+      "created": 1795217282128,
+      "title": "Task: remove raditors",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -287,5 +298,5 @@
       ]
     }
   ],
-  "updated": 1795217263292
+  "updated": 1795217283130
 }
