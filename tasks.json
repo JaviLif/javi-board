@@ -288,6 +288,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwpm3hkdo7q",
+      "created": 1795217413549,
+      "title": "Task: make holes for elektra",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -342,5 +353,5 @@
       ]
     }
   ],
-  "updated": 1795217386695
+  "updated": 1795217414550
 }
