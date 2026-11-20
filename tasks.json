@@ -244,6 +244,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwpm17mcxjo",
+      "created": 1795217307348,
+      "title": "Task: remove forniture hall",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -298,5 +309,5 @@
       ]
     }
   ],
-  "updated": 1795217283130
+  "updated": 1795217308350
 }
