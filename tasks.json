@@ -277,6 +277,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwpm2w2melt",
+      "created": 1795217385694,
+      "title": "Task: add gipsplaten on top of windows",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -331,5 +342,5 @@
       ]
     }
   ],
-  "updated": 1795217361526
+  "updated": 1795217386695
 }
