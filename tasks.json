@@ -365,6 +365,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmws1iyc10pu",
+      "created": 1795364261713,
+      "title": "Task: remove door frame",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -419,5 +430,5 @@
       ]
     }
   ],
-  "updated": 1795364238561
+  "updated": 1795364262714
 }
