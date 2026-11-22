@@ -321,6 +321,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwr3ku5i1l8",
+      "created": 1795307242662,
+      "title": "Task: window frame?",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -375,5 +386,5 @@
       ]
     }
   ],
-  "updated": 1795307216530
+  "updated": 1795307243662
 }
