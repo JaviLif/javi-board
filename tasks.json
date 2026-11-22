@@ -387,6 +387,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmws1js32lot",
+      "created": 1795364300270,
+      "title": "Task: install light on the hall",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -441,5 +452,5 @@
       ]
     }
   ],
-  "updated": 1795364283568
+  "updated": 1795364301271
 }
