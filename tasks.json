@@ -395,7 +395,7 @@
       "created": 1795364300270,
       "title": "Task: install light on the hall",
       "desc": "",
-      "cat": "work",
+      "cat": "house",
       "priority": "medium",
       "col": "backlog",
       "due": "",
@@ -465,5 +465,5 @@
       ]
     }
   ],
-  "updated": 1795423727228
+  "updated": 1795423742272
 }
