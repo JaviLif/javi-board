@@ -422,6 +422,20 @@
       "col": "todo",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwt47ipcnml",
+      "created": 1795429233264,
+      "title": "8.11. Requirement motor torque load",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": [
+        "xmwj4oln956w",
+        "xmwj4tc198a4"
+      ]
     }
   ],
   "cats": [
@@ -476,5 +490,5 @@
       ]
     }
   ],
-  "updated": 1795428473905
+  "updated": 1795429234265
 }
