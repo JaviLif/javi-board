@@ -419,7 +419,7 @@
       "desc": "",
       "cat": "work",
       "priority": "medium",
-      "col": "todo",
+      "col": "progress",
       "due": "",
       "tags": []
     },
@@ -517,5 +517,5 @@
       ]
     }
   ],
-  "updated": 1795443855834
+  "updated": 1795443858483
 }
