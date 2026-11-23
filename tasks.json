@@ -444,7 +444,7 @@
       "desc": "",
       "cat": "work",
       "priority": "medium",
-      "col": "progress",
+      "col": "done",
       "due": "",
       "tags": [
         "xmwj4tc198a4",
@@ -517,5 +517,5 @@
       ]
     }
   ],
-  "updated": 1795443637411
+  "updated": 1795443655458
 }
