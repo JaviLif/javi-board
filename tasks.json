@@ -444,7 +444,7 @@
       "desc": "",
       "cat": "work",
       "priority": "medium",
-      "col": "backlog",
+      "col": "todo",
       "due": "",
       "tags": [
         "xmwj4tc198a4",
@@ -504,5 +504,5 @@
       ]
     }
   ],
-  "updated": 1795431280772
+  "updated": 1795431284296
 }
