@@ -411,6 +411,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwt27nb3z4o",
+      "created": 1795425879999,
+      "title": "Task Amghad: prepare remote flashing CC27 on OBS tesdt bench",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -465,5 +476,5 @@
       ]
     }
   ],
-  "updated": 1795423762584
+  "updated": 1795425881001
 }
