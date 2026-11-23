@@ -450,6 +450,19 @@
         "xmwj4tc198a4",
         "xmwj4oln956w"
       ]
+    },
+    {
+      "id": "xmwtc1s3n0mu",
+      "created": 1795442402435,
+      "title": "OBS DC Charging",
+      "desc": "Why are we hardcoding the max current value?",
+      "cat": "work",
+      "priority": "medium",
+      "col": "todo",
+      "due": "",
+      "tags": [
+        "xmwj4sjgu6lp"
+      ]
     }
   ],
   "cats": [
@@ -504,5 +517,5 @@
       ]
     }
   ],
-  "updated": 1795431869605
+  "updated": 1795442403436
 }
