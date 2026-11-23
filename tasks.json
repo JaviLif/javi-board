@@ -419,7 +419,7 @@
       "desc": "",
       "cat": "work",
       "priority": "medium",
-      "col": "backlog",
+      "col": "todo",
       "due": "",
       "tags": []
     }
@@ -476,5 +476,5 @@
       ]
     }
   ],
-  "updated": 1795425913361
+  "updated": 1795425924473
 }
