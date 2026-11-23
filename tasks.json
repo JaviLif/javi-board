@@ -109,7 +109,7 @@
       "id": "xmwjeaalsvem",
       "created": 1794841497136,
       "title": "Requirements about the coooling of the pack to avoid condesation",
-      "desc": "",
+      "desc": "Calculate max delta temp based on dew point",
       "cat": "work",
       "priority": "medium",
       "col": "backlog",
@@ -476,5 +476,5 @@
       ]
     }
   ],
-  "updated": 1795428445467
+  "updated": 1795428473905
 }
