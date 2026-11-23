@@ -263,9 +263,9 @@
       "created": 1795217329519,
       "title": "Task: fill gaps walls",
       "desc": "",
-      "cat": "work",
+      "cat": "house",
       "priority": "medium",
-      "col": "backlog",
+      "col": "done",
       "due": "",
       "tags": []
     },
@@ -465,5 +465,5 @@
       ]
     }
   ],
-  "updated": 1795423752125
+  "updated": 1795423762584
 }
