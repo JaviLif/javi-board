@@ -349,19 +349,6 @@
       "tags": []
     },
     {
-      "id": "xmwnvx52wkfl",
-      "created": 1795112981240,
-      "title": "Check for heating körpers",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "backlog",
-      "due": "",
-      "tags": [
-        "xmwkv4vc6uoq"
-      ]
-    },
-    {
       "id": "xmwj4x4hq1ur",
       "created": 1794825766142,
       "title": "12V Fuse Box Implementation",
@@ -413,17 +400,6 @@
       "id": "xmwpm0o5sm1i",
       "created": 1795217282128,
       "title": "Task: remove raditors",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "backlog",
-      "due": "",
-      "tags": []
-    },
-    {
-      "id": "xmwpm2w2melt",
-      "created": 1795217385694,
-      "title": "Task: add gipsplaten on top of windows",
       "desc": "",
       "cat": "house",
       "priority": "medium",
@@ -518,6 +494,30 @@
       "col": "todo",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwnvx52wkfl",
+      "created": 1795112981240,
+      "title": "Check for heating körpers",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": [
+        "xmwkv4vc6uoq"
+      ]
+    },
+    {
+      "id": "xmwpm2w2melt",
+      "created": 1795217385694,
+      "title": "Task: add gipsplaten on top of windows",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -572,5 +572,5 @@
       ]
     }
   ],
-  "updated": 1795543565546
+  "updated": 1795543570861
 }
