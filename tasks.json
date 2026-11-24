@@ -363,17 +363,6 @@
       "tags": []
     },
     {
-      "id": "xmws1jefaqxc",
-      "created": 1795364282566,
-      "title": "Task Install electro panel",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmws1js32lot",
       "created": 1795364300270,
       "title": "Task: install light on the hall",
@@ -561,5 +550,5 @@
       ]
     }
   ],
-  "updated": 1795527474567
+  "updated": 1795527489805
 }
