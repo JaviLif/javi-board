@@ -458,7 +458,7 @@
       "desc": "Why are we hardcoding the max current value?",
       "cat": "work",
       "priority": "medium",
-      "col": "todo",
+      "col": "review",
       "due": "",
       "tags": [
         "xmwj4sjgu6lp"
@@ -528,5 +528,5 @@
       ]
     }
   ],
-  "updated": 1795488282533
+  "updated": 1795509713001
 }
