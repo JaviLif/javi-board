@@ -198,17 +198,6 @@
       "tags": []
     },
     {
-      "id": "xmwpm3hkdo7q",
-      "created": 1795217413549,
-      "title": "Task: make holes for elektra",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "2026-11-25",
-      "tags": []
-    },
-    {
       "id": "xmwuqohf8tl4",
       "created": 1795527442484,
       "title": "Install Electrical Inspectie Panel",
@@ -217,6 +206,17 @@
       "priority": "medium",
       "col": "todo",
       "due": "2026-11-24",
+      "tags": []
+    },
+    {
+      "id": "xmwpm3hkdo7q",
+      "created": 1795217413549,
+      "title": "Task: make holes for elektra",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "todo",
+      "due": "2026-11-25",
       "tags": []
     },
     {
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527451378
+  "updated": 1795527455016
 }
