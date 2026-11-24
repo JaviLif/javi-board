@@ -293,7 +293,7 @@
       "cat": "house",
       "priority": "medium",
       "col": "todo",
-      "due": "",
+      "due": "2026-11-25",
       "tags": []
     },
     {
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527455016
+  "updated": 1795527472981
 }
