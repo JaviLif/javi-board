@@ -189,8 +189,8 @@
     {
       "id": "xmwu39tmeykx",
       "created": 1795488127286,
-      "title": "Meassure and ordeer doors",
-      "desc": "",
+      "title": "Doors Order",
+      "desc": "Meassure and ordeer doors",
       "cat": "house",
       "priority": "high",
       "col": "todo",
@@ -550,5 +550,5 @@
       ]
     }
   ],
-  "updated": 1795527398644
+  "updated": 1795527417774
 }
