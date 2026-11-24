@@ -297,6 +297,17 @@
       "tags": []
     },
     {
+      "id": "xmwuqohf8tl4",
+      "created": 1795527442484,
+      "title": "Install Electrical Inspectie Panel",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "todo",
+      "due": "2026-11-24",
+      "tags": []
+    },
+    {
       "id": "xmwr3ku5i1l8",
       "created": 1795307242662,
       "title": "Task: remove windows frames",
@@ -496,17 +507,6 @@
       "tags": [
         "xmwkv4vc6uoq"
       ]
-    },
-    {
-      "id": "xmwuqohf8tl4",
-      "created": 1795527442484,
-      "title": "Install Electrical Inspectie Panel",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "2026-11-24",
-      "tags": []
     }
   ],
   "cats": [
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527443485
+  "updated": 1795527447044
 }
