@@ -128,19 +128,6 @@
       "tags": []
     },
     {
-      "id": "xmwkv4vc65d5",
-      "created": 1794930263718,
-      "title": "Send aktivitaet Plan to Marianne",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "done",
-      "due": "",
-      "tags": [
-        "xmwkv4vc6uoq"
-      ]
-    },
-    {
       "id": "xmwkv5i308dw",
       "created": 1794930293196,
       "title": "Ask Permission to gemeente for isolation pir 120mm ok?",
@@ -148,17 +135,6 @@
       "cat": "house",
       "priority": "medium",
       "col": "review",
-      "due": "",
-      "tags": []
-    },
-    {
-      "id": "xmwm182m634t",
-      "created": 1795000956990,
-      "title": "Check HX Manual",
-      "desc": "",
-      "cat": "work",
-      "priority": "medium",
-      "col": "done",
       "due": "",
       "tags": []
     },
@@ -485,6 +461,30 @@
       "tags": [
         "xmwj4x4hq1ev"
       ]
+    },
+    {
+      "id": "xmwm182m634t",
+      "created": 1795000956990,
+      "title": "Check HX Manual",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "done",
+      "due": "",
+      "tags": []
+    },
+    {
+      "id": "xmwkv4vc65d5",
+      "created": 1794930263718,
+      "title": "Send aktivitaet Plan to Marianne",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "done",
+      "due": "",
+      "tags": [
+        "xmwkv4vc6uoq"
+      ]
     }
   ],
   "cats": [
@@ -539,5 +539,5 @@
       ]
     }
   ],
-  "updated": 1795527264618
+  "updated": 1795527266827
 }
