@@ -264,6 +264,17 @@
       "tags": []
     },
     {
+      "id": "xmwuqmq3g8ct",
+      "created": 1795527360412,
+      "title": "Electrical Order",
+      "desc": "Measure and count how many Ib",
+      "cat": "house",
+      "priority": "high",
+      "col": "todo",
+      "due": "2026-11-24",
+      "tags": []
+    },
+    {
       "id": "xmwpm4c6naha",
       "created": 1795217453231,
       "title": "Taak: remove old switches",
@@ -485,17 +496,6 @@
       "tags": [
         "xmwkv4vc6uoq"
       ]
-    },
-    {
-      "id": "xmwuqmq3g8ct",
-      "created": 1795527360412,
-      "title": "Electrical Order",
-      "desc": "Measure and count how many Ib",
-      "cat": "house",
-      "priority": "high",
-      "col": "todo",
-      "due": "2026-11-24",
-      "tags": []
     }
   ],
   "cats": [
@@ -550,5 +550,5 @@
       ]
     }
   ],
-  "updated": 1795527361415
+  "updated": 1795527367808
 }
