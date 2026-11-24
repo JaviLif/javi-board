@@ -264,17 +264,6 @@
       "tags": []
     },
     {
-      "id": "xmws4lfaaks9",
-      "created": 1795369415842,
-      "title": "Task build hanging door",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmwt27nb3z4o",
       "created": 1795425879999,
       "title": "Task Amghad: prepare remote flashing CC27 on OBS tesdt bench",
@@ -518,6 +507,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmws4lfaaks9",
+      "created": 1795369415842,
+      "title": "Task build hanging door",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "todo",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -572,5 +572,5 @@
       ]
     }
   ],
-  "updated": 1795543570861
+  "updated": 1795543693333
 }
