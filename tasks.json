@@ -198,6 +198,17 @@
       "tags": []
     },
     {
+      "id": "xmwpm3hkdo7q",
+      "created": 1795217413549,
+      "title": "Task: make holes for elektra",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "todo",
+      "due": "",
+      "tags": []
+    },
+    {
       "id": "xmwnw9f9xsc2",
       "created": 1795113554325,
       "title": "Order Pir gipsplaat + rossete",
@@ -256,17 +267,6 @@
       "id": "xmwpm2w2melt",
       "created": 1795217385694,
       "title": "Task: add gipsplaten on top of windows",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
-      "id": "xmwpm3hkdo7q",
-      "created": 1795217413549,
-      "title": "Task: make holes for elektra",
       "desc": "",
       "cat": "house",
       "priority": "medium",
@@ -550,5 +550,5 @@
       ]
     }
   ],
-  "updated": 1795527378099
+  "updated": 1795527390447
 }
