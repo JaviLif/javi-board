@@ -242,17 +242,6 @@
       "tags": []
     },
     {
-      "id": "xmwr3m0yytww",
-      "created": 1795307298154,
-      "title": "Task: solar panels routing?",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmwrh5qr2y1k",
       "created": 1795330053038,
       "title": "Measure width wall M room for door frame",
@@ -518,6 +507,17 @@
       "col": "todo",
       "due": "2026-11-24",
       "tags": []
+    },
+    {
+      "id": "xmwr3m0yytww",
+      "created": 1795307298154,
+      "title": "Task: solar panels routing?",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "todo",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -572,5 +572,5 @@
       ]
     }
   ],
-  "updated": 1795543552668
+  "updated": 1795543565546
 }
