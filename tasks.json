@@ -209,6 +209,17 @@
       "tags": []
     },
     {
+      "id": "xmwuqohf8tl4",
+      "created": 1795527442484,
+      "title": "Install Electrical Inspectie Panel",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "todo",
+      "due": "2026-11-24",
+      "tags": []
+    },
+    {
       "id": "xmwnw9f9xsc2",
       "created": 1795113554325,
       "title": "Order Pir gipsplaat + rossete",
@@ -294,17 +305,6 @@
       "priority": "medium",
       "col": "todo",
       "due": "",
-      "tags": []
-    },
-    {
-      "id": "xmwuqohf8tl4",
-      "created": 1795527442484,
-      "title": "Install Electrical Inspectie Panel",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "2026-11-24",
       "tags": []
     },
     {
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527447044
+  "updated": 1795527451378
 }
