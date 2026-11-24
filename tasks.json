@@ -264,6 +264,17 @@
       "tags": []
     },
     {
+      "id": "xmwu39tmeykx",
+      "created": 1795488127286,
+      "title": "Meassure and ordeer doors",
+      "desc": "",
+      "cat": "house",
+      "priority": "high",
+      "col": "todo",
+      "due": "",
+      "tags": []
+    },
+    {
       "id": "xmwpm6ndm8ei",
       "created": 1795217561050,
       "title": "Task: remove fussbidenleiste",
@@ -415,17 +426,6 @@
       ]
     },
     {
-      "id": "xmwu39tmeykx",
-      "created": 1795488127286,
-      "title": "Meassure and ordeer doors",
-      "desc": "",
-      "cat": "house",
-      "priority": "high",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmwuipzkdtvs",
       "created": 1795514075725,
       "title": "OBS dbc File @ Celso",
@@ -539,5 +539,5 @@
       ]
     }
   ],
-  "updated": 1795527322277
+  "updated": 1795527325201
 }
