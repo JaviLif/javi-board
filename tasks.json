@@ -220,17 +220,6 @@
       "tags": []
     },
     {
-      "id": "xmwpm4c6naha",
-      "created": 1795217453231,
-      "title": "Taak: remove old switches",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "2026-11-25",
-      "tags": []
-    },
-    {
       "id": "xmws1js32lot",
       "created": 1795364300270,
       "title": "Task: install light on the hall",
@@ -507,6 +496,17 @@
       "col": "todo",
       "due": "2026-11-24",
       "tags": []
+    },
+    {
+      "id": "xmwpm4c6naha",
+      "created": 1795217453231,
+      "title": "Taak: remove old switches",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "todo",
+      "due": "2026-11-25",
+      "tags": []
     }
   ],
   "cats": [
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795539557869
+  "updated": 1795540122469
 }
