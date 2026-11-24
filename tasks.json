@@ -275,17 +275,6 @@
       "tags": []
     },
     {
-      "id": "xmwpm6ndm8ei",
-      "created": 1795217561050,
-      "title": "Task: remove fussbidenleiste",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmwr3ku5i1l8",
       "created": 1795307242662,
       "title": "Task: remove windows frames",
@@ -507,6 +496,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwpm6ndm8ei",
+      "created": 1795217561050,
+      "title": "Task: remove fussbidenleiste",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527611524
+  "updated": 1795527805843
 }
