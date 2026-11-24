@@ -327,7 +327,7 @@
     {
       "id": "xmwr3ku5i1l8",
       "created": 1795307242662,
-      "title": "Task: remove window frame",
+      "title": "Task: remove windows frames",
       "desc": "",
       "cat": "house",
       "priority": "medium",
@@ -528,5 +528,5 @@
       ]
     }
   ],
-  "updated": 1795488225796
+  "updated": 1795488240431
 }
