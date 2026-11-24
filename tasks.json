@@ -187,17 +187,6 @@
       "tags": []
     },
     {
-      "id": "xmwuqmq3g8ct",
-      "created": 1795527360412,
-      "title": "Electrical Order",
-      "desc": "Measure and count how many Ib",
-      "cat": "house",
-      "priority": "high",
-      "col": "todo",
-      "due": "2026-11-24",
-      "tags": []
-    },
-    {
       "id": "xmwpm3hkdo7q",
       "created": 1795217413549,
       "title": "Task: make holes for elektra",
@@ -518,6 +507,17 @@
       "col": "todo",
       "due": "2026-11-24",
       "tags": []
+    },
+    {
+      "id": "xmwuqmq3g8ct",
+      "created": 1795527360412,
+      "title": "Electrical Order",
+      "desc": "Measure and count how many Ib",
+      "cat": "house",
+      "priority": "high",
+      "col": "todo",
+      "due": "2026-11-24",
+      "tags": []
     }
   ],
   "cats": [
@@ -572,5 +572,5 @@
       ]
     }
   ],
-  "updated": 1795543551502
+  "updated": 1795543552668
 }
