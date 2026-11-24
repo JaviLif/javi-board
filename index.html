@@ -93,8 +93,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .tag-priority-high{background:#ffebe6;color:#de350b;}
 .tag-priority-medium{background:#fff4e5;color:#ff8b00;}
 .tag-priority-low{background:#f4f5f7;color:var(--text-muted);}
-.card-title{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:4px;}
-.card-desc{font-size:12px;color:var(--text-muted);line-height:1.45;margin-bottom:7px;}
+.card-title{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:4px;cursor:pointer;}
+.card-title:hover{color:var(--accent);}
+.card-desc{font-size:12px;color:var(--text-muted);line-height:1.45;margin-bottom:7px;cursor:pointer;}
 .card-footer{display:flex;align-items:center;justify-content:space-between;}
 .card-date{font-size:11px;color:var(--text-muted);}
 .card-date.overdue{color:var(--danger);font-weight:600;}
@@ -184,6 +185,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .color-swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:transform .12s;}
 .color-swatch:hover,.color-swatch.selected{transform:scale(1.2);border-color:var(--text);}
 
+/* ── DROP LINE ── */
+.drop-line{height:3px;background:var(--accent);border-radius:2px;margin:1px 4px;pointer-events:none;flex-shrink:0;}
+
+/* ── CALENDAR ── */
+.cal-toolbar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 18px;display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.cal-nav-btn{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);font-size:15px;font-weight:700;color:var(--text-muted);cursor:pointer;line-height:1;}
+.cal-nav-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
+.cal-month-title{font-size:15px;font-weight:700;min-width:170px;text-align:center;}
+.cal-scroll{flex:1;overflow:auto;padding:14px 18px;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;min-width:560px;}
+.cal-day-hdr{text-align:center;font-size:11px;font-weight:700;color:var(--text-muted);padding:5px 2px;text-transform:uppercase;letter-spacing:.5px;}
+.cal-cell{min-height:76px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:5px;}
+.cal-cell.empty{background:transparent;border-color:transparent;}
+.cal-cell.today{border-color:var(--accent);border-width:2px;}
+.cal-date{font-size:12px;font-weight:600;color:var(--text-muted);width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;margin-bottom:3px;}
+.cal-cell.today .cal-date{background:var(--accent);color:#fff;}
+.cal-pill{font-size:10.5px;padding:2px 5px;border-radius:3px;margin-bottom:2px;cursor:pointer;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:block;}
+.cal-pill:hover{opacity:.75;}
+
 /* ── MOBILE ── */
 .bottom-nav{display:none;}
 @media(max-width:768px){
@@ -193,9 +213,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .bottom-nav-item .nav-icon{font-size:20px;}
   .bottom-nav-item.active{color:var(--accent);}
   .main{padding-bottom:56px;}
-  .board{flex-direction:column;min-width:unset;}
-  :root{--col-w:calc(100vw - 32px);}
+  /* Horizontal column scroll on mobile */
+  .board-scroll{scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overflow-x:auto;overflow-y:hidden;}
+  .board{flex-direction:row;min-width:max-content;padding-bottom:16px;}
+  :root{--col-w:min(272px,86vw);}
+  .column{scroll-snap-align:start;flex-shrink:0;}
   .news-grid{grid-template-columns:1fr;padding:12px;}
+  .cal-scroll{padding:10px 10px;}
 }
 </style>
 </head>
@@ -220,9 +244,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <span class="nav-icon">⚡</span><span class="nav-label">News</span>
       <span class="nav-badge" id="newsBadge" style="display:none">New</span>
     </button>
+    <button class="nav-item" id="nav-calendar" onclick="switchTab('calendar')">
+      <span class="nav-icon">📅</span><span class="nav-label">Calendar</span>
+    </button>
   </nav>
   <div class="sidebar-footer">
-    <div style="text-align:center;font-size:9.5px;font-weight:700;color:var(--text-muted);letter-spacing:.4px;padding:4px 0 2px;opacity:.7">v1.0.8</div>
+    <div style="text-align:center;font-size:9.5px;font-weight:700;color:var(--text-muted);letter-spacing:.4px;padding:4px 0 2px;opacity:.7">v1.1.0</div>
     <button class="nav-item" onclick="openSettings()">
       <span class="nav-icon">⚙️</span><span class="nav-label">Settings</span>
     </button>
@@ -256,17 +283,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="news-scroll"><div class="news-grid" id="newsGrid"></div></div>
   </div>
 
+  <!-- CALENDAR PANEL -->
+  <div class="panel" id="panel-calendar">
+    <div class="cal-toolbar">
+      <button class="cal-nav-btn" onclick="navCal(-1)">‹</button>
+      <span class="cal-month-title" id="calTitle"></span>
+      <button class="cal-nav-btn" onclick="navCal(1)">›</button>
+      <button class="cal-nav-btn" onclick="navCal(0)" style="font-size:12px;padding:5px 11px;margin-left:4px">Today</button>
+    </div>
+    <div class="cal-scroll"><div class="cal-grid" id="calGrid"></div></div>
+  </div>
 
 </div><!-- /main -->
 </div><!-- /app -->
 
 <!-- Version badge -->
-<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v1.0.8</div>
+<div id="versionBadge" style="position:fixed;bottom:10px;right:14px;font-size:10.5px;font-weight:700;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 9px;z-index:300;letter-spacing:.3px;box-shadow:var(--shadow);user-select:none">v1.1.0</div>
 
 <!-- Mobile nav -->
 <nav class="bottom-nav">
   <button class="bottom-nav-item active" id="mob-board" onclick="switchTab('board')"><span class="nav-icon">📋</span>Tasks</button>
   <button class="bottom-nav-item" id="mob-news" onclick="switchTab('news')"><span class="nav-icon">⚡</span>News</button>
+  <button class="bottom-nav-item" id="mob-calendar" onclick="switchTab('calendar')"><span class="nav-icon">📅</span>Calendar</button>
   <button class="bottom-nav-item" onclick="openSettings()"><span class="nav-icon">⚙️</span>Settings</button>
 </nav>
 
@@ -369,8 +407,9 @@ const NEWS_CACHE='javi_news_v3', NEWS_TTL=30*60*1000;
 /* ══════ STATE ══════ */
 let tasks=[],cats=[],activeFilter='all',editingTaskId=null,settingsDraft=[],activeTagCatId=null;
 let modalSelectedTags=[];
-let dragId=null,touchClone=null,touchOffX=0,touchOffY=0;
+let dragId=null,touchClone=null,touchOffX=0,touchOffY=0,insertBeforeId=null;
 let activeTab='board',newsArticles=[],newsFilter='all',newsLoading=false;
+let calYear=new Date().getFullYear(),calMonth=new Date().getMonth();
 let sidebarCollapsed=localStorage.getItem('sc')==='1';
 
 /* ══════ GITHUB SYNC ══════
@@ -531,14 +570,14 @@ function initSidebar(){if(sidebarCollapsed)document.getElementById('sidebar').cl
 /* ══════ TABS ══════ */
 function switchTab(tab){
   activeTab=tab;
-  ['board','news'].forEach(t=>{
-    document.getElementById(`panel-${t}`).classList.toggle('active',t===tab);
+  ['board','news','calendar'].forEach(t=>{
+    document.getElementById(`panel-${t}`)?.classList.toggle('active',t===tab);
     document.getElementById(`nav-${t}`)?.classList.toggle('active',t===tab);
     document.getElementById(`mob-${t}`)?.classList.toggle('active',t===tab);
   });
-  // Categories only relevant on Tasks tab
   document.querySelector('.sidebar-footer').style.display=tab==='board'?'':'none';
   if(tab==='news'){document.getElementById('newsBadge').style.display='none';if(!newsArticles.length)fetchNews(false);}
+  if(tab==='calendar') renderCal();
 }
 
 /* ══════ BOARD ══════ */
@@ -548,6 +587,7 @@ function renderStats(){const total=tasks.length,done=tasks.filter(t=>t.col==='do
 function filteredTasks(c){return tasks.filter(t=>t.col===c&&(activeFilter==='all'||t.cat===activeFilter));}
 function render(){
   renderFilterBar();renderStats();
+  if(activeTab==='calendar'){renderCal();return;}
   const board=document.getElementById('board');board.innerHTML='';
   COLUMNS.forEach(col=>{
     const ct=filteredTasks(col.id);
@@ -570,6 +610,10 @@ function makeCard(t){
   const taskCat=cats.find(c=>c.id===t.cat);const catTags=(taskCat&&taskCat.tags)||[];
   const taskTagsHtml=(t.tags||[]).map(tid=>{const tg=catTags.find(x=>x.id===tid);return tg?`<span class="tag-chip" style="background:${tg.bg};color:${tg.color};font-size:10.5px;padding:2px 7px">${esc(tg.label)}</span>`:''}).join('');
   card.innerHTML=`<div class="card-tags"><span class="tag" style="${ts}">${esc(cat.label)}</span><span class="tag tag-priority-${t.priority}">${t.priority}</span></div><div class="card-title">${esc(t.title)}</div>${t.desc?`<div class="card-desc">${esc(t.desc)}</div>`:''}\n${taskTagsHtml?`<div class="card-tags" style="margin-top:5px">${taskTagsHtml}</div>`:''}<div class="card-footer">${due}<div class="card-actions"><button class="btn-card" onclick="editTask('${t.id}')">✏️</button><button class="btn-card del" onclick="deleteTask('${t.id}')">🗑</button></div></div>`;
+  // Click title → open edit modal focused on title
+  card.querySelector('.card-title').addEventListener('click',e=>{if(dragId)return;e.stopPropagation();editTask(t.id);setTimeout(()=>document.getElementById('fTitle').select(),80);});
+  // Click description → open edit modal focused on description
+  card.querySelector('.card-desc')?.addEventListener('click',e=>{if(dragId)return;e.stopPropagation();editTask(t.id);setTimeout(()=>document.getElementById('fDesc').focus(),80);});
   setupDrag(card,t.id);return card;
 }
 function isOverdue(d){return d&&new Date(d)<new Date(new Date().toDateString());}
@@ -577,8 +621,38 @@ function fmtDate(d){if(!d)return'';const p=d.split('-');return`${p[2]}/${p[1]}`;
 
 /* ══════ DRAG ══════ */
 function setupDrag(card,tid){card.draggable=true;card.addEventListener('dragstart',()=>{dragId=tid;setTimeout(()=>card.classList.add('dragging'),0);});card.addEventListener('dragend',()=>{card.classList.remove('dragging');dragId=null;});card.addEventListener('touchstart',e=>onTouchStart(e,tid,card),{passive:false});}
-function setupDropZone(body,colId){body.addEventListener('dragover',e=>{e.preventDefault();body.classList.add('drag-over');});body.addEventListener('dragleave',()=>body.classList.remove('drag-over'));body.addEventListener('drop',e=>{e.preventDefault();body.classList.remove('drag-over');dropTo(colId);});}
-function dropTo(colId){if(!dragId)return;const t=tasks.find(t=>t.id===dragId);if(t){t.col=colId;saveState();render();}dragId=null;}
+function setupDropZone(body,colId){
+  body.addEventListener('dragover',e=>{
+    e.preventDefault();body.classList.add('drag-over');
+    // Find insertion point
+    const cards=[...body.querySelectorAll('.card:not(.dragging)')];
+    insertBeforeId=null;
+    for(const c of cards){const r=c.getBoundingClientRect();if(e.clientY<r.top+r.height/2){insertBeforeId=c.dataset.id;break;}}
+    // Show drop line
+    body.querySelectorAll('.drop-line').forEach(l=>l.remove());
+    const line=document.createElement('div');line.className='drop-line';
+    if(insertBeforeId){const bc=body.querySelector(`[data-id="${insertBeforeId}"]`);if(bc)body.insertBefore(line,bc);}
+    else if(cards.length) body.appendChild(line);
+  });
+  body.addEventListener('dragleave',e=>{if(!body.contains(e.relatedTarget)){body.classList.remove('drag-over');body.querySelectorAll('.drop-line').forEach(l=>l.remove());insertBeforeId=null;}});
+  body.addEventListener('drop',e=>{e.preventDefault();body.classList.remove('drag-over');body.querySelectorAll('.drop-line').forEach(l=>l.remove());dropTo(colId);});
+}
+function dropTo(colId){
+  if(!dragId) return;
+  const t=tasks.find(t=>t.id===dragId);
+  if(!t){dragId=null;insertBeforeId=null;return;}
+  t.col=colId;
+  // Remove from array and re-insert at drop position
+  tasks.splice(tasks.indexOf(t),1);
+  if(insertBeforeId){
+    const bi=tasks.findIndex(x=>x.id===insertBeforeId);
+    tasks.splice(bi>=0?bi:tasks.length,0,t);
+  } else {
+    tasks.push(t);
+  }
+  dragId=null;insertBeforeId=null;
+  saveState();render();
+}
 function onTouchStart(e,tid,srcCard){if(e.touches.length!==1)return;if(e.target.closest('button'))return;dragId=tid;const touch=e.touches[0],rect=srcCard.getBoundingClientRect();touchOffX=touch.clientX-rect.left;touchOffY=touch.clientY-rect.top;touchClone=srcCard.cloneNode(true);touchClone.classList.add('touch-drag');touchClone.style.width=rect.width+'px';touchClone.style.left=(touch.clientX-touchOffX)+'px';touchClone.style.top=(touch.clientY-touchOffY)+'px';document.body.appendChild(touchClone);srcCard.classList.add('dragging');document.addEventListener('touchmove',onTouchMove,{passive:false});document.addEventListener('touchend',onTouchEnd,{once:true});document.addEventListener('touchcancel',onTouchEnd,{once:true});}
 function onTouchMove(e){e.preventDefault();const touch=e.touches[0];if(touchClone){touchClone.style.left=(touch.clientX-touchOffX)+'px';touchClone.style.top=(touch.clientY-touchOffY)+'px';}document.querySelectorAll('.col-body').forEach(b=>b.classList.remove('drag-over'));document.elementFromPoint(touch.clientX,touch.clientY)?.closest('.col-body')?.classList.add('drag-over');}
 function onTouchEnd(){document.removeEventListener('touchmove',onTouchMove);if(touchClone){touchClone.remove();touchClone=null;}document.querySelectorAll('.card.dragging').forEach(c=>c.classList.remove('dragging'));document.querySelectorAll('.col-body.drag-over').forEach(b=>{b.classList.remove('drag-over');dropTo(b.dataset.col);});dragId=null;}
@@ -740,6 +814,38 @@ function saveSettings(){
   cats=settingsDraft.map(c=>({...c}));
   if(activeFilter!=='all'&&!cats.find(c=>c.id===activeFilter))activeFilter='all';
   saveState();render();closeSettings();
+}
+
+/* ══════ CALENDAR ══════ */
+const CAL_MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const CAL_DAYS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+function navCal(d){
+  if(d===0){calYear=new Date().getFullYear();calMonth=new Date().getMonth();}
+  else{calMonth+=d;if(calMonth<0){calMonth=11;calYear--;}if(calMonth>11){calMonth=0;calYear++;}}
+  renderCal();
+}
+function renderCal(){
+  document.getElementById('calTitle').textContent=`${CAL_MONTHS[calMonth]} ${calYear}`;
+  const firstDow=new Date(calYear,calMonth,1).getDay(); // 0=Sun
+  const offset=(firstDow+6)%7; // Mon-based
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  const today=new Date().toISOString().split('T')[0];
+  const monthStr=`${calYear}-${String(calMonth+1).padStart(2,'0')}`;
+  const visible=tasks.filter(t=>t.due&&t.due.startsWith(monthStr)&&(activeFilter==='all'||t.cat===activeFilter));
+  let html=CAL_DAYS.map(d=>`<div class="cal-day-hdr">${d}</div>`).join('');
+  for(let i=0;i<offset;i++) html+=`<div class="cal-cell empty"></div>`;
+  for(let d=1;d<=daysInMonth;d++){
+    const dateStr=`${monthStr}-${String(d).padStart(2,'0')}`;
+    const dayTasks=visible.filter(t=>t.due===dateStr);
+    const isToday=dateStr===today;
+    html+=`<div class="cal-cell${isToday?' today':''}"><div class="cal-date">${d}</div>`;
+    dayTasks.forEach(t=>{
+      const c=cats.find(x=>x.id===t.cat)||{color:'#97a0af'};
+      html+=`<span class="cal-pill" style="background:${c.color}1a;color:${c.color};border-left:2px solid ${c.color}" onclick="editTask('${t.id}')">${esc(t.title)}</span>`;
+    });
+    html+=`</div>`;
+  }
+  document.getElementById('calGrid').innerHTML=html;
 }
 
 /* ══════ NEWS ══════ */
