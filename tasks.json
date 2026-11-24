@@ -507,6 +507,17 @@
       "col": "todo",
       "due": "2026-11-25",
       "tags": []
+    },
+    {
+      "id": "xmwuyk3yuik2",
+      "created": 1795540675350,
+      "title": "Cut foam",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -561,5 +572,5 @@
       ]
     }
   ],
-  "updated": 1795540122469
+  "updated": 1795540676352
 }
