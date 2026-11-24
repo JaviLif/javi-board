@@ -400,7 +400,7 @@
       "cat": "house",
       "priority": "medium",
       "col": "backlog",
-      "due": "",
+      "due": "2026-11-26",
       "tags": []
     },
     {
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527812000
+  "updated": 1795527818039
 }
