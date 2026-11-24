@@ -393,6 +393,17 @@
       "tags": []
     },
     {
+      "id": "xmwr3ku5i1l8",
+      "created": 1795307242662,
+      "title": "Task: remove windows frames",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
+    },
+    {
       "id": "xmwnvx52wkfl",
       "created": 1795112981240,
       "title": "Check for heating körpers",
@@ -496,17 +507,6 @@
       "col": "backlog",
       "due": "",
       "tags": []
-    },
-    {
-      "id": "xmwr3ku5i1l8",
-      "created": 1795307242662,
-      "title": "Task: remove windows frames",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "backlog",
-      "due": "",
-      "tags": []
     }
   ],
   "cats": [
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527807888
+  "updated": 1795527812000
 }
