@@ -297,6 +297,17 @@
       "tags": []
     },
     {
+      "id": "xmws1js32lot",
+      "created": 1795364300270,
+      "title": "Task: install light on the hall",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "todo",
+      "due": "",
+      "tags": []
+    },
+    {
       "id": "xmwpm6ndm8ei",
       "created": 1795217561050,
       "title": "Task: remove fussbidenleiste",
@@ -355,17 +366,6 @@
       "id": "xmws1iyc10pu",
       "created": 1795364261713,
       "title": "Task: remove door frame",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
-      "id": "xmws1js32lot",
-      "created": 1795364300270,
-      "title": "Task: install light on the hall",
       "desc": "",
       "cat": "house",
       "priority": "medium",
@@ -550,5 +550,5 @@
       ]
     }
   ],
-  "updated": 1795527489805
+  "updated": 1795527494508
 }
