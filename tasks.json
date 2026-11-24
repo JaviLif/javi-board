@@ -420,7 +420,7 @@
       "title": "Meassure and ordeer doors",
       "desc": "",
       "cat": "house",
-      "priority": "medium",
+      "priority": "high",
       "col": "todo",
       "due": "",
       "tags": []
@@ -539,5 +539,5 @@
       ]
     }
   ],
-  "updated": 1795527266827
+  "updated": 1795527322277
 }
