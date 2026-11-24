@@ -176,6 +176,17 @@
       ]
     },
     {
+      "id": "xmwuqmq3g8ct",
+      "created": 1795527360412,
+      "title": "Electrical Order",
+      "desc": "Measure and count how many Ib",
+      "cat": "house",
+      "priority": "high",
+      "col": "todo",
+      "due": "2026-11-24",
+      "tags": []
+    },
+    {
       "id": "xmwu39tmeykx",
       "created": 1795488127286,
       "title": "Meassure and ordeer doors",
@@ -261,17 +272,6 @@
       "priority": "medium",
       "col": "todo",
       "due": "",
-      "tags": []
-    },
-    {
-      "id": "xmwuqmq3g8ct",
-      "created": 1795527360412,
-      "title": "Electrical Order",
-      "desc": "Measure and count how many Ib",
-      "cat": "house",
-      "priority": "high",
-      "col": "todo",
-      "due": "2026-11-24",
       "tags": []
     },
     {
@@ -550,5 +550,5 @@
       ]
     }
   ],
-  "updated": 1795527367808
+  "updated": 1795527371347
 }
