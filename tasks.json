@@ -242,6 +242,17 @@
       "tags": []
     },
     {
+      "id": "xmws1js32lot",
+      "created": 1795364300270,
+      "title": "Task: install light on the hall",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "todo",
+      "due": "",
+      "tags": []
+    },
+    {
       "id": "xmwpm0o5sm1i",
       "created": 1795217282128,
       "title": "Task: remove raditors",
@@ -289,17 +300,6 @@
       "id": "xmwpm2w2melt",
       "created": 1795217385694,
       "title": "Task: add gipsplaten on top of windows",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
-      "id": "xmws1js32lot",
-      "created": 1795364300270,
-      "title": "Task: install light on the hall",
       "desc": "",
       "cat": "house",
       "priority": "medium",
@@ -550,5 +550,5 @@
       ]
     }
   ],
-  "updated": 1795527494508
+  "updated": 1795527497483
 }
