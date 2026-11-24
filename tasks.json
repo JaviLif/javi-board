@@ -275,17 +275,6 @@
       "tags": []
     },
     {
-      "id": "xmwr3ku5i1l8",
-      "created": 1795307242662,
-      "title": "Task: remove windows frames",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmwr3laecfni",
       "created": 1795307263716,
       "title": "Task: door frame",
@@ -507,6 +496,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwr3ku5i1l8",
+      "created": 1795307242662,
+      "title": "Task: remove windows frames",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527805843
+  "updated": 1795527807888
 }
