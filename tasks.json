@@ -244,12 +244,12 @@
     {
       "id": "xmwnw9f9xsc2",
       "created": 1795113554325,
-      "title": "Order Pir gipsplaat + rossete",
-      "desc": "",
+      "title": "Isolation Material Order",
+      "desc": "Check how much and how thick iso Material do we need",
       "cat": "house",
       "priority": "medium",
       "col": "todo",
-      "due": "",
+      "due": "2026-11-24",
       "tags": []
     },
     {
@@ -550,5 +550,5 @@
       ]
     }
   ],
-  "updated": 1795527509695
+  "updated": 1795527545383
 }
