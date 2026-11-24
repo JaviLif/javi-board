@@ -176,23 +176,23 @@
       ]
     },
     {
-      "id": "xmwuqmq3g8ct",
-      "created": 1795527360412,
-      "title": "Electrical Order",
-      "desc": "Measure and count how many Ib",
-      "cat": "house",
-      "priority": "high",
-      "col": "todo",
-      "due": "2026-11-24",
-      "tags": []
-    },
-    {
       "id": "xmwnw9f9xsc2",
       "created": 1795113554325,
       "title": "Isolation Material Order",
       "desc": "Check how much and how thick iso Material do we need",
       "cat": "house",
       "priority": "medium",
+      "col": "todo",
+      "due": "2026-11-24",
+      "tags": []
+    },
+    {
+      "id": "xmwuqmq3g8ct",
+      "created": 1795527360412,
+      "title": "Electrical Order",
+      "desc": "Measure and count how many Ib",
+      "cat": "house",
+      "priority": "high",
       "col": "todo",
       "due": "2026-11-24",
       "tags": []
@@ -550,5 +550,5 @@
       ]
     }
   ],
-  "updated": 1795527547641
+  "updated": 1795527549440
 }
