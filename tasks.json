@@ -253,17 +253,6 @@
       "tags": []
     },
     {
-      "id": "xmwpm0o5sm1i",
-      "created": 1795217282128,
-      "title": "Task: remove raditors",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmwpm17mcxjo",
       "created": 1795217307348,
       "title": "Task: remove forniture hall",
@@ -507,6 +496,17 @@
       "col": "todo",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwpm0o5sm1i",
+      "created": 1795217282128,
+      "title": "Task: remove raditors",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527587807
+  "updated": 1795527604281
 }
