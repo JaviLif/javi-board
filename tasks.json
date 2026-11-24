@@ -496,6 +496,17 @@
       "tags": [
         "xmwkv4vc6uoq"
       ]
+    },
+    {
+      "id": "xmwuqrks5er0",
+      "created": 1795527586805,
+      "title": "Task: Plaster everything",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "todo",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -550,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527549440
+  "updated": 1795527587807
 }
