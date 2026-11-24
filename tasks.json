@@ -198,17 +198,6 @@
       "tags": []
     },
     {
-      "id": "xmwu39tmeykx",
-      "created": 1795488127286,
-      "title": "Doors Order",
-      "desc": "Meassure and ordeer doors",
-      "cat": "house",
-      "priority": "high",
-      "col": "todo",
-      "due": "2026-11-24",
-      "tags": []
-    },
-    {
       "id": "xmwuqohf8tl4",
       "created": 1795527442484,
       "title": "Install Electrical Inspectie Panel",
@@ -507,6 +496,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwu39tmeykx",
+      "created": 1795488127286,
+      "title": "Doors Order",
+      "desc": "Meassure and ordeer doors",
+      "cat": "house",
+      "priority": "high",
+      "col": "todo",
+      "due": "2026-11-24",
+      "tags": []
     }
   ],
   "cats": [
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527818039
+  "updated": 1795539557869
 }
