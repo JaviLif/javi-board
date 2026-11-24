@@ -213,19 +213,6 @@
       ]
     },
     {
-      "id": "xmwnvx52wkfl",
-      "created": 1795112981240,
-      "title": "Check for heating körpers",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": [
-        "xmwkv4vc6uoq"
-      ]
-    },
-    {
       "id": "xmwnw9f9xsc2",
       "created": 1795113554325,
       "title": "Order Pir gipsplaat + rossete",
@@ -485,6 +472,19 @@
       "col": "progress",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwnvx52wkfl",
+      "created": 1795112981240,
+      "title": "Check for heating körpers",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": [
+        "xmwkv4vc6uoq"
+      ]
     }
   ],
   "cats": [
@@ -539,5 +539,5 @@
       ]
     }
   ],
-  "updated": 1795527246935
+  "updated": 1795527258756
 }
