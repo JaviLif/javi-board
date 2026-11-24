@@ -275,17 +275,6 @@
       "tags": []
     },
     {
-      "id": "xmwpm2cnhtpu",
-      "created": 1795217360525,
-      "title": "Task: remove paperwall",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmwpm2w2melt",
       "created": 1795217385694,
       "title": "Task: add gipsplaten on top of windows",
@@ -507,6 +496,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwpm2cnhtpu",
+      "created": 1795217360525,
+      "title": "Task: remove paperwall",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -561,5 +561,5 @@
       ]
     }
   ],
-  "updated": 1795527604281
+  "updated": 1795527607145
 }
