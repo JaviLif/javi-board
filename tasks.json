@@ -375,17 +375,6 @@
       ]
     },
     {
-      "id": "xmwuqrks5er0",
-      "created": 1795527586805,
-      "title": "Task: Plaster everything",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmwu39tmeykx",
       "created": 1795488127286,
       "title": "Doors Order",
@@ -465,17 +454,6 @@
       ]
     },
     {
-      "id": "xmwpm2w2melt",
-      "created": 1795217385694,
-      "title": "Task: add gipsplaten on top of windows",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "backlog",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmws4lfaaks9",
       "created": 1795369415842,
       "title": "Task build hanging door",
@@ -483,17 +461,6 @@
       "cat": "house",
       "priority": "medium",
       "col": "todo",
-      "due": "",
-      "tags": []
-    },
-    {
-      "id": "xmwpm6ndm8ei",
-      "created": 1795217561050,
-      "title": "Task: remove fussbidenleiste",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "backlog",
       "due": "",
       "tags": []
     },
@@ -547,6 +514,39 @@
       "id": "xmwpm2cnhtpu",
       "created": 1795217360525,
       "title": "Task: remove paperwall",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
+    },
+    {
+      "id": "xmwuqrks5er0",
+      "created": 1795527586805,
+      "title": "Task: Plaster everything",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "todo",
+      "due": "",
+      "tags": []
+    },
+    {
+      "id": "xmwpm2w2melt",
+      "created": 1795217385694,
+      "title": "Task: add gipsplaten on top of windows",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
+    },
+    {
+      "id": "xmwpm6ndm8ei",
+      "created": 1795217561050,
+      "title": "Task: remove fussbidenleiste",
       "desc": "",
       "cat": "house",
       "priority": "medium",
@@ -607,5 +607,5 @@
       ]
     }
   ],
-  "updated": 1795633420189
+  "updated": 1795642941791
 }
