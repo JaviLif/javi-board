@@ -386,17 +386,6 @@
       "tags": []
     },
     {
-      "id": "xmwpm2cnhtpu",
-      "created": 1795217360525,
-      "title": "Task: remove paperwall",
-      "desc": "",
-      "cat": "house",
-      "priority": "medium",
-      "col": "backlog",
-      "due": "",
-      "tags": []
-    },
-    {
       "id": "xmwu39tmeykx",
       "created": 1795488127286,
       "title": "Doors Order",
@@ -553,6 +542,17 @@
       "col": "todo",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwpm2cnhtpu",
+      "created": 1795217360525,
+      "title": "Task: remove paperwall",
+      "desc": "",
+      "cat": "house",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -607,5 +607,5 @@
       ]
     }
   ],
-  "updated": 1795633406533
+  "updated": 1795633420189
 }
