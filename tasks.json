@@ -518,6 +518,19 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwvyjxcwo3g",
+      "created": 1795601132960,
+      "title": "Q for Sw Team",
+      "desc": "- How is the contactors welded error being triggered?",
+      "cat": "work",
+      "priority": "medium",
+      "col": "todo",
+      "due": "",
+      "tags": [
+        "xmwj4oln956w"
+      ]
     }
   ],
   "cats": [
@@ -572,5 +585,5 @@
       ]
     }
   ],
-  "updated": 1795543703028
+  "updated": 1795601133964
 }
