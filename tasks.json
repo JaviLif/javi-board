@@ -531,6 +531,17 @@
       "tags": [
         "xmwj4oln956w"
       ]
+    },
+    {
+      "id": "xmww6wpc2xlb",
+      "created": 1795615166018,
+      "title": "Pins for V and T sense. CCS Batt Modules @ celso",
+      "desc": "",
+      "cat": "work",
+      "priority": "high",
+      "col": "progress",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -585,5 +596,5 @@
       ]
     }
   ],
-  "updated": 1795601142953
+  "updated": 1795615167020
 }
