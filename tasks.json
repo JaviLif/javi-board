@@ -14,6 +14,17 @@
       ]
     },
     {
+      "id": "xmww6wpc2xlb",
+      "created": 1795615166018,
+      "title": "Pins for V and T sense. CCS Batt Modules @ celso",
+      "desc": "",
+      "cat": "work",
+      "priority": "high",
+      "col": "progress",
+      "due": "",
+      "tags": []
+    },
+    {
       "id": "xmwj4soglp5s",
       "created": 1794825558741,
       "title": "Oil Filter Modification. Richard",
@@ -531,17 +542,6 @@
       "tags": [
         "xmwj4oln956w"
       ]
-    },
-    {
-      "id": "xmww6wpc2xlb",
-      "created": 1795615166018,
-      "title": "Pins for V and T sense. CCS Batt Modules @ celso",
-      "desc": "",
-      "cat": "work",
-      "priority": "high",
-      "col": "progress",
-      "due": "",
-      "tags": []
     }
   ],
   "cats": [
@@ -596,5 +596,5 @@
       ]
     }
   ],
-  "updated": 1795615167020
+  "updated": 1795615169412
 }
