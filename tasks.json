@@ -542,6 +542,17 @@
       "tags": [
         "xmwj4oln956w"
       ]
+    },
+    {
+      "id": "xmww8pu16310",
+      "created": 1795618204746,
+      "title": "Production. List for serial numbers of items intalled in the machines",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "backlog",
+      "due": "",
+      "tags": []
     }
   ],
   "cats": [
@@ -596,5 +607,5 @@
       ]
     }
   ],
-  "updated": 1795615169412
+  "updated": 1795618205746
 }
