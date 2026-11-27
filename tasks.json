@@ -553,6 +553,19 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwype1bzwsa",
+      "created": 1795767140159,
+      "title": "Check if bms error triggers state machine error",
+      "desc": "",
+      "cat": "work",
+      "priority": "medium",
+      "col": "todo",
+      "due": "",
+      "tags": [
+        "xmwj4sjgu6lp"
+      ]
     }
   ],
   "cats": [
@@ -607,5 +620,5 @@
       ]
     }
   ],
-  "updated": 1795642941791
+  "updated": 1795767141795
 }
