@@ -375,17 +375,6 @@
       ]
     },
     {
-      "id": "xmwu39tmeykx",
-      "created": 1795488127286,
-      "title": "Doors Order",
-      "desc": "Meassure and ordeer doors",
-      "cat": "house",
-      "priority": "high",
-      "col": "todo",
-      "due": "2026-11-24",
-      "tags": []
-    },
-    {
       "id": "xmwpm4c6naha",
       "created": 1795217453231,
       "title": "Taak: remove old switches",
@@ -566,6 +555,17 @@
       "col": "backlog",
       "due": "",
       "tags": []
+    },
+    {
+      "id": "xmwu39tmeykx",
+      "created": 1795488127286,
+      "title": "Doors Order",
+      "desc": "Meassure and ordeer doors",
+      "cat": "house",
+      "priority": "high",
+      "col": "progress",
+      "due": "2026-11-24",
+      "tags": []
     }
   ],
   "cats": [
@@ -620,5 +620,5 @@
       ]
     }
   ],
-  "updated": 1795805105752
+  "updated": 1795805109633
 }
