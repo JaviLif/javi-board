@@ -408,17 +408,6 @@
       "tags": []
     },
     {
-      "id": "xmwuqmq3g8ct",
-      "created": 1795527360412,
-      "title": "Electrical Order",
-      "desc": "Measure and count how many Ib",
-      "cat": "house",
-      "priority": "high",
-      "col": "todo",
-      "due": "2026-11-24",
-      "tags": []
-    },
-    {
       "id": "xmwr3m0yytww",
       "created": 1795307298154,
       "title": "Task: solar panels routing?",
@@ -566,6 +555,17 @@
       "col": "progress",
       "due": "2026-11-24",
       "tags": []
+    },
+    {
+      "id": "xmwuqmq3g8ct",
+      "created": 1795527360412,
+      "title": "Electrical Order",
+      "desc": "Measure and count how many Ib",
+      "cat": "house",
+      "priority": "high",
+      "col": "progress",
+      "due": "2026-11-24",
+      "tags": []
     }
   ],
   "cats": [
@@ -620,5 +620,5 @@
       ]
     }
   ],
-  "updated": 1795805117121
+  "updated": 1795805122469
 }
